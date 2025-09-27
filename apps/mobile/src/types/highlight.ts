@@ -16,6 +16,26 @@ export interface DecisionReason {
   description: string;
 }
 
+
+export interface ScriptBeat {
+  id: string;
+  title: string;
+  content: string;
+}
+
+export interface CodexiergeScript {
+  beats: ScriptBeat[];
+  locale: 'en' | 'es' | 'fr';
+  provenance?: Record<string, unknown>;
+}
+
+export interface CodexiergeDialogue {
+  locale: 'en' | 'es' | 'fr';
+  greeting: string;
+  guidance: string;
+  celebration: string;
+}
+
 export interface DecisionLog {
   highlightId: string;
   reasons: DecisionReason[];
@@ -29,8 +49,11 @@ export interface HighlightNarrative {
   keyframes: string[];
   relatedPoiIds: string[];
   rationale: DecisionLog;
-  conciergeCues?: ConciergeNarrationCue[];
+  codexiergeCues?: CodexiergeNarrationCue[];
   itinerary?: ItineraryStep[];
+  script?: CodexiergeScript;
+  codexierge?: Record<'en' | 'es' | 'fr', CodexiergeDialogue>;
+  provenance?: Record<string, unknown>;
 }
 
 export interface ItineraryStep {
@@ -41,7 +64,7 @@ export interface ItineraryStep {
   deepLink?: string;
 }
 
-export interface ConciergeNarrationCue {
+export interface CodexiergeNarrationCue {
   step: 'GREETING' | 'PLAN' | 'BOOK' | 'GUIDE' | 'CELEBRATE' | 'FAREWELL';
   locale: 'en' | 'es' | 'fr';
   caption: string;

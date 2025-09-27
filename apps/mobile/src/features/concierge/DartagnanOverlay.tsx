@@ -1,16 +1,16 @@
 import { useEffect, useMemo, useReducer } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { ConciergeNarrationCue, ItineraryStep } from '../../types/highlight';
+import { CodexiergeNarrationCue, ItineraryStep } from '../../types/highlight';
 
 type Phase = 'GREETING' | 'PLAN' | 'BOOK' | 'GUIDE' | 'CELEBRATE' | 'FAREWELL';
 
 type State = {
   phase: Phase;
-  currentCue?: ConciergeNarrationCue;
+  currentCue?: CodexiergeNarrationCue;
 };
 
 type Action =
-  | { type: 'ADVANCE'; cue: ConciergeNarrationCue }
+  | { type: 'ADVANCE'; cue: CodexiergeNarrationCue }
   | { type: 'RESET' };
 
 const initialState: State = {
@@ -29,7 +29,7 @@ function reducer(state: State, action: Action): State {
 }
 
 type Props = {
-  cues: ConciergeNarrationCue[];
+  cues: CodexiergeNarrationCue[];
   itinerary: ItineraryStep[];
   locale: 'en' | 'es' | 'fr';
   onSelectCTA: (step: ItineraryStep) => void;

@@ -1,10 +1,22 @@
 {
   "expo": {
-    "name": "context-city-codex",
+    "name": "ContextCity",
     "slug": "context-city-codex",
     "version": "1.0.0",
     "plugins": [
       "expo-video"
-    ]
+    ],
+    "ios": {
+      "icon": "./assets/codex/app-icon.png"
+    },
+    "icon": "./assets/codex/app-icon.png",
+    "splash": {
+      "image": "./assets/codex/app-icon.png",
+      "backgroundColor": "#0B1C33",
+      "resizeMode": "cover",
+      "enableFullScreenImage_legacy": true,
+      "fadeDuration": 500,
+      "enableFullScreenImage": true
+    }
   }
 }

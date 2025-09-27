@@ -1,0 +1,38 @@
+[
+  {
+    "id": "asset-1",
+    "source": "instagram",
+    "url": "https://cdn.contextcity.dev/assets/asset-1.jpg",
+    "caption": "Fans flooding Mercado Little Spain for the match!",
+    "language": "es",
+    "moderation_labels": [],
+    "is_flagged": false,
+    "metrics": {"views": 1200, "likes": 340, "comments": 80, "shares": 45},
+    "tags": ["mercado", "worldcup"],
+    "extra": {"timestamp_score": 0.9}
+  },
+  {
+    "id": "asset-2",
+    "source": "tiktok",
+    "url": "https://cdn.contextcity.dev/assets/asset-2.jpg",
+    "caption": "Liberty State Park fan fest rehearsal",
+    "language": "en",
+    "moderation_labels": ["crowd"],
+    "is_flagged": false,
+    "metrics": {"views": 900, "likes": 210, "comments": 50, "shares": 25},
+    "tags": ["liberty", "fan-fest"],
+    "extra": {"timestamp_score": 0.8}
+  },
+  {
+    "id": "asset-3",
+    "source": "instagram",
+    "url": "https://cdn.contextcity.dev/assets/asset-3.jpg",
+    "caption": "After party at Felix in SoHo",
+    "language": "fr",
+    "moderation_labels": ["explicit"],
+    "is_flagged": false,
+    "metrics": {"views": 500, "likes": 50, "comments": 5, "shares": 2},
+    "tags": ["felix"],
+    "extra": {"timestamp_score": 0.7}
+  }
+]

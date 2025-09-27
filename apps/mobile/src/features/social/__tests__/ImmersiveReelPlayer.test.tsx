@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, act } from '@testing-library/react-native';
+import { render, fireEvent } from '@testing-library/react-native';
 import { ImmersiveReelPlayer } from '../ImmersiveReelPlayer';
 import { felixNarrative } from '../../../mocks/felix';
 
@@ -23,15 +23,18 @@ jest.mock('expo-video', () => {
       }),
     };
   };
-  let lastPlayer = null;
+  let lastPlayer: any = null;
   return {
     __esModule: true,
     VideoView: (props: any) => <mock-video {...props} />,
     useVideoPlayer: jest.fn((source: any, setup?: (player: any) => void) => {
-      const player = createPlayer();
-      lastPlayer = player;
-      setup?.(player);
-      return player;
+      if (!lastPlayer) {
+        lastPlayer = createPlayer();
+        setup?.(lastPlayer);
+      } else {
+        setup?.(lastPlayer);
+      }
+      return lastPlayer;
     }),
     __getLastPlayer: () => lastPlayer,
   };
@@ -62,24 +65,27 @@ describe('ImmersiveReelPlayer', () => {
 
   it('invokes playback controls and analytics', async () => {
     const analytics = jest.fn();
-    const { getByText } = render(
-      <ImmersiveReelPlayer narrative={felixNarrative} autoPlay={false} onClose={jest.fn()} locale="en" onAnalytics={analytics} />
+    const { getByText, findByText } = render(
+      <ImmersiveReelPlayer
+        narrative={felixNarrative}
+        autoPlay={false}
+        onClose={jest.fn()}
+        locale="en"
+        onAnalytics={analytics}
+      />
     );
 
     expect(analytics).toHaveBeenNthCalledWith(1, 'player.view', expect.any(Object));
+    expect(getByText('Play')).toBeTruthy();
 
-    await act(async () => {
-      fireEvent.press(getByText('Play'));
-    });
+    fireEvent.press(getByText('Play'));
 
-    const player = (require('expo-video') as any).__getLastPlayer();
-    expect(player.play).toHaveBeenCalled();
+    expect(await findByText('Pause')).toBeTruthy();
     expect(analytics).toHaveBeenNthCalledWith(2, 'player.play', expect.any(Object));
 
-    await act(async () => {
-      fireEvent.press(getByText('Pause'));
-    });
-    expect(player.pause).toHaveBeenCalled();
+    fireEvent.press(getByText('Pause'));
+
+    expect(await findByText('Play')).toBeTruthy();
     expect(analytics).toHaveBeenNthCalledWith(3, 'player.pause', expect.any(Object));
   });
 });

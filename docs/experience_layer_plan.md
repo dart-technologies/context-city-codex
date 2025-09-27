@@ -36,7 +36,7 @@ This document outlines how to complete the Experience Layer backlog items in `TO
 - **Accessibility:** ensure card is focusable, supports screen reader summary, includes `why` explanation string.
 - **Analytics:** tap events dispatch `codex_rationale_viewed` and `codex_feedback_submitted` to instrumentation context.
 
-## 4. Dartagnan Concierge Overlay
+## 4. Dartagnan Codexierge Overlay
 - **Component:** `DartagnanOverlay`
 - **Location:** `apps/mobile/src/features/concierge/DartagnanOverlay.tsx`
 - **Features:**

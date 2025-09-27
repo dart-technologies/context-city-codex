@@ -13,6 +13,7 @@
   "dependencies": {
     "@react-native-community/netinfo": "11.4.1",
     "expo": "~54.0.10",
+    "expo-splash-screen": "~31.0.10",
     "expo-status-bar": "~3.0.8",
     "expo-video": "~3.0.11",
     "react": "19.1.0",

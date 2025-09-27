@@ -13,7 +13,7 @@ describe('DartagnanOverlay', () => {
   it('displays cues and itinerary CTAs', () => {
     const { getByText, getAllByText } = render(
       <DartagnanOverlay
-        cues={felixNarrative.conciergeCues ?? []}
+        cues={felixNarrative.codexiergeCues ?? []}
         itinerary={felixNarrative.itinerary ?? []}
         locale="fr"
         onSelectCTA={jest.fn()}

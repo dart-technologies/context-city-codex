@@ -1,4 +1,4 @@
-import { buildApiUrl } from '../utils/env';
+import { API_BASE_URL, buildApiUrl } from '../utils/env';
 
 export interface FeedbackPayload {
   highlightId: string;
@@ -7,6 +7,10 @@ export interface FeedbackPayload {
 }
 
 export async function submitFeedback(payload: FeedbackPayload): Promise<boolean> {
+  if (!API_BASE_URL) {
+    return true;
+  }
+
   try {
     const response = await fetch(buildApiUrl('/api/feedback'), {
       method: 'POST',

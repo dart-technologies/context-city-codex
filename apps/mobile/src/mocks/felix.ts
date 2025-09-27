@@ -9,6 +9,8 @@ export const felixSummary: HighlightSummary = {
   ctas: ['plan', 'book', 'guide'],
 };
 
+const generatedTimestamp = new Date().toISOString();
+
 export const felixNarrative: HighlightNarrative = {
   id: 'poi-felix',
   videoUrl: 'https://cdn.contextcity.dev/reels/felix.mp4',
@@ -40,10 +42,10 @@ export const felixNarrative: HighlightNarrative = {
     ],
     metadata: {
       distance: '0.4 mi from traveler hotel',
-      last_updated: '2025-07-18T18:22:00Z',
+      last_updated: generatedTimestamp,
     },
   },
-  conciergeCues: [
+  codexiergeCues: [
     { step: 'GREETING', locale: 'fr', caption: "Salut, ami! Dartagnan t'accompagne aujourd'hui.", durationMs: 3500 },
     { step: 'PLAN', locale: 'fr', caption: 'Planifions ta journée: petit-déjeuner, fan fest, match!', durationMs: 4000 },
     { step: 'BOOK', locale: 'fr', caption: "Je réserve une table chez Felix avant la ruée.", durationMs: 4000 },
@@ -57,6 +59,38 @@ export const felixNarrative: HighlightNarrative = {
     { id: 'guide', label: 'Guide to MetLife', description: 'Hop PATH + NJ Transit with backup rideshare.', action: 'guide' },
     { id: 'celebrate', label: 'Celebrate at Liberty State Park', description: 'Join fans for ferry fireworks.', action: 'celebrate' },
   ],
+  script: {
+    beats: [
+      { id: 'beat-1', title: 'Arrivee', content: "Dartagnan t'accueille pour plonger dans la ferveur de Mercado." },
+      { id: 'beat-2', title: 'Feu de match', content: 'Cap sur la fan fest avec des transitions Codex maitrisees.' },
+      { id: 'beat-3', title: 'Apres-match', content: 'Rendez-vous chez Felix pour celebrer a la francaise.' },
+    ],
+    locale: 'fr',
+    provenance: { generator: 'static' },
+  },
+  codexierge: {
+    en: {
+      locale: 'en',
+      greeting: 'Dartagnan here! Ready for your World Cup adventure?',
+      guidance: 'Codex spotted celebration, transit -- follow my cues for smooth hops.',
+      celebration: 'Meet me at Liberty State Park for the celebration finale!',
+    },
+    es: {
+      locale: 'es',
+      greeting: 'Soy Dartagnan! Listo para tu aventura mundialista?',
+      guidance: 'Codex vio celebration, transit -- sigue mis pistas para moverte sin fricciones.',
+      celebration: 'Te espero en Liberty State Park para celebrar a lo grande!',
+    },
+    fr: {
+      locale: 'fr',
+      greeting: "C'est Dartagnan ! Pret pour ton aventure Coupe du Monde ?",
+      guidance: "Codex a repere celebration, transit -- suis mes indications pour avancer sans stress.",
+      celebration: 'Rendez-vous a Liberty State Park pour feter la victoire !',
+    },
+  },
+  provenance: {
+    script_generator: 'static',
+  },
 };
 
 export const highlightMocks = {

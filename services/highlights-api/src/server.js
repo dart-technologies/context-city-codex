@@ -16,8 +16,14 @@ app.use(morgan('combined'));
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const highlightsDir = path.resolve(__dirname, '../data/highlights');
-const feedbackLogPath = path.resolve(__dirname, '../data/feedback.log');
+const defaultHighlightsDir = path.resolve(__dirname, '../data/highlights');
+const highlightsDir = process.env.HIGHLIGHTS_DIR ? path.resolve(process.env.HIGHLIGHTS_DIR) : defaultHighlightsDir;
+const defaultLogPath = path.resolve(__dirname, '../data/feedback.log');
+const logPath = process.env.FEEDBACK_LOG_PATH ? path.resolve(process.env.FEEDBACK_LOG_PATH) : defaultLogPath;
+
+function appendLog(entry) {
+  fs.appendFileSync(logPath, `${JSON.stringify(entry)}\n`);
+}
 
 function loadHighlight(poiId) {
   const filePath = path.join(highlightsDir, `${poiId}.json`);
@@ -34,7 +40,7 @@ function computeEtag(payload) {
 
 app.get('/api/highlights/:poiId', (req, res) => {
   const { poiId } = req.params;
-  const locale = req.query.locale; // placeholder for future localization adjustments
+  const locale = req.query.locale;
 
   const payload = loadHighlight(poiId);
 
@@ -80,13 +86,33 @@ app.post('/api/feedback', (req, res) => {
   };
 
   try {
-    fs.appendFileSync(feedbackLogPath, `${JSON.stringify(entry)}\n`);
+    appendLog(entry);
   } catch (error) {
     console.error('feedback.write.failure', error);
     return res.status(503).json({ error: 'FEEDBACK_WRITE_FAILURE', message: 'Could not persist feedback at this time.' });
   }
 
   console.info(JSON.stringify({ event: 'feedback.received', highlightId, wasHelpful, feedbackId: entry.id }));
+  return res.status(202).json({ status: 'accepted' });
+});
+
+app.post('/api/telemetry', (req, res) => {
+  const payload = req.body ?? {};
+  const entry = {
+    id: crypto.randomUUID(),
+    event: typeof payload.event === 'string' ? payload.event : 'unknown',
+    payload: payload.payload ?? {},
+    receivedAt: new Date().toISOString(),
+  };
+
+  try {
+    appendLog({ telemetry: entry });
+  } catch (error) {
+    console.error('telemetry.write.failure', error);
+    return res.status(503).json({ error: 'TELEMETRY_WRITE_FAILURE', message: 'Unable to log telemetry event.' });
+  }
+
+  console.info(JSON.stringify({ event: 'telemetry.received', telemetryId: entry.id, type: entry.event }));
   return res.status(202).json({ status: 'accepted' });
 });
 

@@ -10,10 +10,18 @@ This log captures progress against the alignment checklist prior to building the
   - **Phyllo** advertises compliance-first creator API with sandbox mode; requires developer registration and post-approval for production scopes, so plan to operate within sandbox content unless expedited review granted.
   - **NYC & Company** publishes open event datasets via NYC Open Data; CSV/JSON endpoints can be pulled directly without additional contracts, fitting "no third-party" tooling beyond HTTP fetch.
   - **Liberty State Park / NJ sites** share public schedules via state tourism portals; scraping allowed under terms if rate-limited and attributed—confirm before use.
+- **Decision (Hackathon demo):** Prefer Codex-operated direct scrapes of POI-owned social links (homepage embeds to Instagram, YouTube, TikTok, X) when terms permit. Aggregator trial keys remain fallback for missing reels, but Codex must cache only metadata + thumbnails and never store raw downloads beyond demo fixtures.
+  - Attribute each highlight within a Codex-branded frame that cites the original platform handle and link.
+  - Document robots.txt and terms-of-service checks for every POI before enabling scrapes.
 - Action items:
   - [ ] Compile rate limits and pricing docs for Data365 vs. Phyllo. *(Owner: Alex)*
-  - [ ] Confirm attribution requirements for Liberty State Park fan festival assets. *(Owner: Priya)*
-  - [ ] Draft email template for requesting temporary hackathon access tokens. *(Owner: Alex)*
+  - [ ] Confirm attribution requirements for Liberty State Park fan festival assets and Codex-branded frames. *(Owner: Priya)*
+  - [ ] Log robots.txt and terms-of-service clearance for each POI before enabling direct scrapes. *(Owner: Priya + Legal)*
+      * Mercado Little Spain — verify `https://www.mercadolittlespain.com/robots.txt` and confirm Instagram embed permissions.
+      * Liberty State Park Fan Festival — reference NJ State tourism portal terms for event media reuse; record contact email approval.
+      * Felix in SoHo — check `https://www.felix.nyc/robots.txt` (or site equivalent) and Resy press-kit usage policy.
+      * MetLife Stadium — cite `https://www.metlifestadium.com/robots.txt` and NFL media guidelines for highlight framing.
+  - [ ] Draft email template for requesting temporary hackathon access tokens (fallback aggregators). *(Owner: Alex)*
 
 ## Privacy, Governance, and Audit Requirements
 - Trust & Safety inputs required on: real-time crowd data usage, Dartagnan persona transparency, storing user preferences.

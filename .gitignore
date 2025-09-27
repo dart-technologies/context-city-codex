@@ -1,0 +1,30 @@
+# Node / JavaScript
+node_modules/
+yarn-error.log
+.npmrc
+
+# Expo / React Native
+.expo/
+.expo-shared/
+.packager/
+metro-cache/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+poetry.lock
+
+# macOS
+.DS_Store
+
+# Build artifacts
+coverage/
+dist/
+build/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp

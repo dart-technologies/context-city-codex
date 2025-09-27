@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "context-city-codex",
+    "slug": "context-city-codex",
+    "version": "1.0.0",
+    "plugins": [
+      "expo-video"
+    ]
+  }
+}

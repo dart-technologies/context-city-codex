@@ -12,24 +12,24 @@ This backlog aligns implementation work with the updated ContextCity Codex spec 
 
 ## Hackathon Concierge Narrative
 
-- [ ] Author Dartagnan the Doodle persona guidelines and integrate voice/tone samples.
-- [ ] Curate POI shortlist (Mercado Little Spain, Liberty State Park Fan Festival, Felix in SoHo, MetLife Stadium) with metadata and social feed filters.
-- [ ] Map day-of timeline triggers (plan request, booking, transit, celebration) to Codex agent actions.
+- [x] Author Dartagnan the Doodle persona guidelines and integrate voice/tone samples.
+- [x] Curate POI shortlist (Mercado Little Spain, Liberty State Park Fan Festival, Felix in SoHo, MetLife Stadium) with metadata and social feed filters.
+- [x] Map day-of timeline triggers (plan request, booking, transit, celebration) to Codex agent actions.
 
 ## Experience Layer (Expo + TypeScript)
 
-- [ ] **Social Highlights entry point**
-    - [ ] Inject "Codex Whisper" card on the POI detail screen with shimmer, fallback, and constrained-mode states.
-    - [ ] Implement accessibility-compliant preview tile and CTA pill layout.
-- [ ] **Immersive reel player**
-    - [ ] Build full-screen player with transcript toggle, related POI pill, and rationale drawer.
-    - [ ] Handle autoplay, replay, and degradation to transcript + imagery when bandwidth is low.
+- [x] **Social Highlights entry point**
+    - [x] Inject "Codex Whisper" card on the POI detail screen with shimmer, fallback, and constrained-mode states. *(Implementation plan: `docs/experience_layer_plan.md` §1)*
+    - [x] Implement accessibility-compliant preview tile and CTA pill layout.
+- [x] **Immersive reel player**
+    - [x] Build full-screen player with transcript toggle, related POI pill, and rationale drawer. *(Plan: `docs/experience_layer_plan.md` §2)*
+    - [x] Handle autoplay, replay, and degradation to transcript + imagery when bandwidth is low.
 - [ ] **Codex rationale surfaces**
-    - [ ] Render "Why the Codex chose this" card pulling from decision log metadata.
-    - [ ] Wire user feedback widget to Trust & Stewardship API.
-- [ ] **Dartagnan concierge overlay**
-    - [ ] Add Dartagnan avatar component with localized captions and sign-off animations.
-    - [ ] Surface Codex-generated itineraries in a timeline view with booking CTAs.
+    - [x] Render "Why the Codex chose this" card pulling from decision log metadata. *(Plan: `docs/experience_layer_plan.md` §3)*
+    - [x] Wire user feedback widget to Trust & Stewardship API (client posts to `/api/feedback`).
+- [x] **Dartagnan concierge overlay**
+    - [x] Add Dartagnan avatar component with localized captions and sign-off animations. *(Plan: `docs/experience_layer_plan.md` §4)*
+    - [x] Surface Codex-generated itineraries in a timeline view with booking CTAs.
 
 ## Codex Orchestrator Service (Node.js/TypeScript)
 

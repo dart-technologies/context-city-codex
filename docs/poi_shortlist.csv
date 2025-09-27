@@ -1,0 +1,5 @@
+poi_id,name,borough,neighborhood,category,languages,highlight_filters,booking_provider,transit_notes
+poi-mercado,URL: https://www.urbanspacenyc.com/mercado-little-spain,Manhattan,Hudson Yards,Spanish marketplace,"es,en",#worldcup,#spanishfood,Walk-ins accepted; mock booking disabled,14th St shuttle + 7 train to Hudson Yards
+poi-liberty-fanfest,URL: https://www.prnewswire.com/news-releases/one-year-to-go-liberty-state-park-named-official-site-of-fifa-fan-festival-nynj-302479180.html,Jersey City,Liberty State Park,Fan festival,"fr,en",#fifafanfest,#libertystatepark,None,Ferry from Paulus Hook + PATH
+poi-felix,URL: https://www.felixnyc.com,Manhattan,SoHo,French brasserie,"fr,en",#felixsoho,#frenchcuisine,Mock Resy endpoint,ACE subway to Canal St
+poi-metlife,URL: https://www.metlifestadium.com,East Rutherford,Meadowlands,Stadium,"es,fr,en",#worldcupfinal,#metlifestadium,SeatGeek info only (view-only),NJ Transit rail/bus + rideshare fallback

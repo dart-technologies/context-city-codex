@@ -11,7 +11,9 @@ from .models import (
     HighlightFrame,
     HighlightNarrative,
     LocaleNarration,
+    AccessibilityAssets,
 )
+from .preferences import PreferenceResult, detect_preferences
 from .scene_labelling import (
     SceneLabeler,
     KeywordSceneLabeler,
@@ -28,6 +30,21 @@ from .summarization import (
     StaticSummarizer,
     ScreenAppSummarizer,
     create_summarizer,
+)
+from .translation import (
+    Translator,
+    TranslationItem,
+    StaticTranslator,
+    GPTTranslator,
+    create_translator,
+)
+from .accessibility import (
+    AccessibilityGenerator,
+    AccessibilityItem,
+    AccessibilityFields,
+    StaticAccessibilityGenerator,
+    GPTAccessibilityGenerator,
+    create_accessibility_generator,
 )
 from .video_assembly import (
     CreatomateError,
@@ -58,6 +75,8 @@ __all__ = [
     'HighlightFrame',
     'HighlightNarrative',
     'LocaleNarration',
+    'AccessibilityAssets',
+    'PreferenceResult',
     'SceneLabeler',
     'KeywordSceneLabeler',
     'apply_scene_labels',
@@ -69,6 +88,17 @@ __all__ = [
     'StaticSummarizer',
     'ScreenAppSummarizer',
     'create_summarizer',
+    'Translator',
+    'TranslationItem',
+    'StaticTranslator',
+    'GPTTranslator',
+    'create_translator',
+    'AccessibilityGenerator',
+    'AccessibilityItem',
+    'AccessibilityFields',
+    'StaticAccessibilityGenerator',
+    'GPTAccessibilityGenerator',
+    'create_accessibility_generator',
     'CreatomateError',
     'CreatomateRenderConfig',
     'CreatomateRenderer',
@@ -81,4 +111,5 @@ __all__ = [
     'GCSRenderStorage',
     'CreatomateCopyError',
     'create_storage',
+    'detect_preferences',
 ]

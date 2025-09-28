@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert } from 'react-native';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { PoiDetailScreen } from '../PoiDetailScreen';
-import { felixNarrative, felixSummary } from '../../mocks/felix';
+import { felixNarrative, felixSummary, highlightMocks } from '../../mocks/felix';
 import { useHighlightSummary } from '../../hooks/useHighlightSummary';
 import { recordTelemetry } from '../../services/telemetry';
 import { submitFeedback } from '../../services/feedback';
@@ -29,6 +29,7 @@ describe('PoiDetailScreen rationale flow', () => {
   const mockSubmitFeedback = submitFeedback as jest.MockedFunction<typeof submitFeedback>;
 
   beforeEach(() => {
+    mockUseHighlightSummary.mockReset();
     mockRecordTelemetry.mockResolvedValue();
     mockSubmitFeedback.mockResolvedValue(true);
   });
@@ -57,7 +58,7 @@ describe('PoiDetailScreen rationale flow', () => {
     const { getByText } = render(<PoiDetailScreen poiId="poi-felix" />);
 
     expect(getByText('Electric fan vibe')).toBeTruthy();
-    expect(getByText('Arrivee')).toBeTruthy();
+    expect(getByText('Arrival')).toBeTruthy();
     expect(getByText('Dartagnan here! Ready for your World Cup adventure?')).toBeTruthy();
 
     await waitFor(() =>
@@ -78,6 +79,68 @@ describe('PoiDetailScreen rationale flow', () => {
     );
 
     alertSpy.mockRestore();
+  });
+
+  it('shows stale banner but still renders rationale when decision log is aging', async () => {
+    mockUseHighlightSummary.mockReturnValue({
+      status: 'ready',
+      summary: felixSummary,
+      narrative: {
+        ...felixNarrative,
+        rationale: {
+          ...felixNarrative.rationale,
+          metadata: {
+            ...felixNarrative.rationale.metadata,
+            last_updated: new Date(Date.now() - 13 * 60 * 60 * 1000).toISOString(),
+          },
+        },
+      },
+    });
+
+    const { getByText, queryByText } = render(<PoiDetailScreen poiId="poi-felix" />);
+
+    expect(getByText('Electric fan vibe')).toBeTruthy();
+    expect(getByText('Codex spotted an older decision log and is revalidating with fresh signals.')).toBeTruthy();
+    expect(queryByText('Codex is double-checking this rationale')).toBeNull();
+
+    await waitFor(() =>
+      expect(mockRecordTelemetry).toHaveBeenCalledWith(
+        'codex_rationale_viewed',
+        expect.objectContaining({ highlightId: 'poi-felix', status: 'flagged', warnings: ['stale_decision_log'] })
+      )
+    );
+  });
+
+  it('allows toggling supporter focus and language variants', async () => {
+    mockUseHighlightSummary.mockImplementation((poi: string) => {
+      if (poi === 'poi-mercado') {
+        return {
+          status: 'ready',
+          summary: highlightMocks['poi-mercado'].summary,
+          narrative: highlightMocks['poi-mercado'].narrative,
+        };
+      }
+      return {
+        status: 'ready',
+        summary: felixSummary,
+        narrative: felixNarrative,
+      };
+    });
+
+    const { getByLabelText, getByText } = render(<PoiDetailScreen poiId="poi-felix" />);
+
+    fireEvent.press(getByLabelText(/Support.*France/));
+    fireEvent.press(getByLabelText(/Support option.*Spain/));
+
+    await waitFor(() => expect(getByText('Chants igniting Mercado')).toBeTruthy());
+
+    fireEvent.press(getByLabelText(/Language: English/));
+    fireEvent.press(getByLabelText(/Language option.*Español/));
+
+    await waitFor(() =>
+      expect(getByText('¡Soy Dartagnan! ¿Listo para vivir la ola roja en Mercado?')).toBeTruthy()
+    );
+    expect(getByText('Bienvenida')).toBeTruthy();
   });
 
   it('shows governance notice when decision log is missing required metadata', async () => {

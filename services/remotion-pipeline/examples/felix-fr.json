@@ -1,0 +1,54 @@
+{
+  "poi": {
+    "id": "poi-felix",
+    "name": "Felix in SoHo",
+    "locale": "fr",
+    "distance": "0,6 km de l'hôtel",
+    "hours": "10:00-01:00",
+    "tags": ["soho", "bleus"]
+  },
+  "summary": "Dartagnan t'accompagne de Felix jusqu'à Liberty State Park pour l'après-match des Bleus.",
+  "codexiergeLocales": ["fr"],
+  "segments": [
+    {
+      "assetId": "asset-felix-1",
+      "mediaUrl": "https://cdn.contextcity.dev/reels/felix-frame1.jpg",
+      "caption": "Electric fan vibe",
+      "title": "Arrivée",
+      "rationale": "Clips temps réel montrant Felix rempli de supporters tricolores.",
+      "subtitles": {
+        "fr": "Felix est plein d'énergie tricolore—viens vibrer.",
+        "en": "Felix is pulsing with Les Bleus energy.",
+        "es": "Felix vibra con la hinchada francesa."
+      }
+    },
+    {
+      "assetId": "asset-felix-2",
+      "mediaUrl": "https://cdn.contextcity.dev/reels/felix-frame2.jpg",
+      "caption": "Liberty State Park fireworks",
+      "title": "Après-match",
+      "rationale": "Codex recommande ferry nocturne et show au Liberty State Park.",
+      "subtitles": {
+        "fr": "Rendez-vous au ferry pour célébrer la victoire.",
+        "en": "Meet on the Hudson ferry to celebrate.",
+        "es": "Festejamos en el ferry del Hudson."
+      }
+    }
+  ],
+  "brandColor": "#0b1221",
+  "accentColor": "#f5c333",
+  "clipDurationSeconds": 5,
+  "transitionMs": 500,
+  "soundtrackUrl": "static://audio/silence.mp3",
+  "narrations": {
+    "fr": {
+      "locale": "fr",
+      "audioUrl": "static://audio/silence.mp3",
+      "voice": "codex-fr",
+      "subtitles": {
+        "asset-felix-1": "Felix est plein d'énergie tricolore—viens vibrer.",
+        "asset-felix-2": "Rendez-vous au ferry pour célébrer la victoire."
+      }
+    }
+  }
+}

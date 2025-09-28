@@ -9,11 +9,11 @@
     "preview": "remotion preview"
   },
   "dependencies": {
-    "@remotion/cli": "^4.0.143",
-    "@remotion/google-fonts": "^4.0.143",
+    "@remotion/cli": "^4.0.354",
+    "@remotion/google-fonts": "^4.0.354",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "remotion": "^4.0.143"
+    "remotion": "^4.0.354"
   },
   "devDependencies": {
     "ts-node": "^10.9.2",

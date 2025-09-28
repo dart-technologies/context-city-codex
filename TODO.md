@@ -67,11 +67,12 @@ This backlog aligns implementation work with the updated ContextCity Codex spec 
 
 ## Localization & Accessibility
 
-- [ ] Detect language and accessibility preferences from Codex profiles.
-- [ ] Automate translation of captions, on-screen text, and scripts (Google Cloud Translation/DeepL + GPT-5 tone check).
-- [ ] Produce captions, audio descriptions, haptic cues, and alt-text-only fallbacks for low-bandwidth scenarios.
-- [ ] Validate localized voiceovers via TTS and ensure transcripts sync across locales.
-- [ ] QA Spanish and French itinerary flows, including Dartagnan captions and TTS output.
+- [x] Detect language and accessibility preferences from Codex profiles using GPT-5 signals and conversations (CLI now calls preference service with GPT-5 fallback heuristics offline; Content Workers emit locale cues for downstream use).
+- [x] **P0** Automate translation of captions, on-screen text, and scripts purely via GPT-5 prompts and evaluation loops (Content Workers call GPT-5 translation service with fallback heuristics and persist per-locale bundles).
+- [x] **P0** Produce captions, audio descriptions, haptic cues, and alt-text-only fallbacks for low-bandwidth scenarios using GPT-5 authored assets (Content Workers author accessibility bundles per locale and feed Remotion/Expo fallbacks).
+- [ ] **P1** Validate localized voiceovers via GPT-5 speech synthesis / review and ensure transcripts sync across locales (iterate through Codexierge script beats and narration manifests).
+- [ ] **P1** QA Spanish and French itinerary flows, including Dartagnan captions and GPT-5 generated TTS output (exercise Expo demo path with localized assets).
+- [ ] **P1** Wire Expo concierge to play GPT-authored audio descriptions and trigger haptic cues in the live build once endpoints are provisioned.
 
 ## Trust & Stewardship Controls
 

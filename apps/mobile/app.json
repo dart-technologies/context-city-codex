@@ -7,7 +7,8 @@
       "expo-video"
     ],
     "ios": {
-      "icon": "./assets/codex/app-icon.png"
+      "icon": "./assets/codex/app-icon.png",
+      "bundleIdentifier": "art.dart.contextcity"
     },
     "icon": "./assets/codex/app-icon.png",
     "splash": {

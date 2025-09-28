@@ -16,11 +16,12 @@ Today, we’ll demo how our concierge takes a tourist from “Plan my day” to 
 This is how we turn New York into a smart, welcoming city — for the World Cup, and for every visitor after.
 
 ## 60-Second Demo Script
-- **0-10s**: Run `yarn demo:codex-nyc`; Dartagnan introduces himself on-screen while Codex Whisper plays a Spanish-captioned highlight video for Mercado Little Spain pulled from live social feeds.
-- **10-20s**: Pop open the rationale drawer showing La Roja crowd sentiment, proximity, and accessibility signals that drove the recommendation.
-- **20-30s**: Tap “Plan my day”; Dartagnan narrates as Codex drafts a timeline blending Spanish breakfast, Midtown tapas, and the Liberty State Park Fan Festival with a French-language preview.
-- **30-40s**: Hit “Book my table”; agent secures a 1 PM slot at Felix in SoHo and surfaces the French confirmation with provenance log.
-- **40-50s**: Select “Guide me”; display bilingual NJ Transit guidance to MetLife, flagging service delays and auto-offering rideshare fallback while Dartagnan highlights ADA callouts.
-- **50-60s**: Trigger post-match celebration prompt recommending a Hudson River ferry party with localized Spanish and French summaries; flash repo + audit log proving the hackathon build, then return to Dartagnan waving goodbye.
+- **Pre-roll**: Follow the [Live Service Connection Playbook](docs/live_connection_playbook.md) to ensure Expo is pointed at the Highlights API and GPT-powered manifests.
+- **0-10s**: Launch Expo (simulator or device) with `EXPO_PUBLIC_API_BASE_URL` set. Dartagnan greets the traveler; Codex Whisper plays the Spanish Mercado Little Spain reel live from the Highlights API. Narration bubble reflects GPT concierge cues.
+- **10-20s**: Open the rationale drawer; confirm the API-sourced “Why Codex chose this” data (engagement, proximity, accessibility) is visible.
+- **20-30s**: Tap the “Plan” toggle to expand the concierge tray. Walk through the itinerary steps (Plan itinerary → Book now → Guide me → Celebrate), calling out multi-language descriptions and GPT-authored accessibility notes.
+- **30-40s**: Trigger “Book now”; show mock confirmation flow and mention how the API would call the booking agent (no live booking for the demo).
+- **40-50s**: Hit “Guide me”; surface bilingual NJ Transit guidance and mention live feeds (service alerts) the Highlights API would incorporate.
+- **50-60s**: Switch locales via reel dropdown (Spanish ↔ French) to demonstrate localized audio descriptions and captions. Close with “Celebrate” CTA and highlight telemetry/feedback logging (check Highlights API console for `telemetry.received` / `feedback.received`).
 
 > Prep asset: `assets/codex/dartagnan.png` (Dartagnan portrait) for on-screen cameos.

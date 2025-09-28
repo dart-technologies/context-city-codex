@@ -1,0 +1,114 @@
+{
+  "summary": {
+    "id": "poi-metlife",
+    "title": "MetLife Stadium Final Gate",
+    "previewUrl": "https://images.unsplash.com/photo-1522770179533-24471fcdba45?auto=format&fit=crop&w=1200&q=80",
+    "locale": "fr",
+    "tagline": "Codex suit les cortèges bleus depuis le PATH jusqu'aux tourniquets.",
+    "ctas": ["plan", "guide", "celebrate"]
+  },
+  "narrative": {
+    "id": "poi-metlife",
+    "videoUrl": "https://cdn.contextcity.dev/reels/metlife.mp4",
+    "videoByLocale": {
+      "fr": "https://cdn.contextcity.dev/reels/metlife.mp4",
+      "en": "https://cdn.contextcity.dev/reels/codex-highlight.mp4",
+      "es": "https://cdn.contextcity.dev/reels/mercado-es.mp4"
+    },
+    "transcript": {
+      "fr": "Dartagnan te mène dans le corridor bleu – Codex synchronise PATH, NJ Transit et sécurité.",
+      "en": "Dartagnan guides you through the blue corridor—Codex syncs PATH, NJ Transit, and security checkpoints.",
+      "es": "Dartagnan te guía por el corredor azul, sincronizando PATH, NJ Transit y accesos de seguridad."
+    },
+    "keyframes": [
+      "https://cdn.contextcity.dev/reels/metlife-frame1.jpg",
+      "https://cdn.contextcity.dev/reels/metlife-frame2.jpg"
+    ],
+    "relatedPoiIds": ["poi-liberty-fanfest", "poi-felix"],
+    "rationale": {
+      "highlightId": "poi-metlife",
+      "reasons": [
+        {
+          "id": "transit",
+          "label": "Transit surge",
+          "icon": "🚆",
+          "description": "Codex detected PATH platform peaks at 16:10 and highlighted backup CoachUSA shuttles."
+        },
+        {
+          "id": "supporter",
+          "label": "Supporter corridor",
+          "icon": "🟦",
+          "description": "Instagram Stories tagged #LesBleusNYC show the blue flare tunnel at Gate C ramp."
+        }
+      ],
+      "metadata": {
+        "gates_open": "17:30 EDT",
+        "security_advisory": "Clear bag policy enforced",
+        "last_updated": "2025-07-18T19:40:00Z"
+      }
+    },
+    "itinerary": [
+      {
+        "id": "plan",
+        "label": "Plan d'accès",
+        "description": "Choisis PATH 33rd St → Journal Square, puis NJ Transit ligne Meadowlands.",
+        "action": "plan"
+      },
+      {
+        "id": "guide",
+        "label": "Guidage tourniquets",
+        "description": "Codex te place dans la file bleu pour la section supporters.",
+        "action": "guide"
+      },
+      {
+        "id": "celebrate",
+        "label": "Célébrer la victoire",
+        "description": "Coordonne retour ferry ou navette post-match avec alertes live.",
+        "action": "celebrate"
+      }
+    ],
+    "script": {
+      "beats": [
+        { "id": "beat-1", "title": "Tunnel bleu", "content": "Codex synchronise les fumigènes et l'entrée du cortège Les Bleus." },
+        { "id": "beat-2", "title": "Contrôle accès", "content": "Briefing sécurité + accessibilité, badges ADA et files familiales." },
+        { "id": "beat-3", "title": "Montée en tribune", "content": "Guide ta montée vers la section 118 avec chants et tambours live." }
+      ],
+      "locale": "fr",
+      "provenance": { "generator": "static" }
+    },
+    "codexierge": {
+      "en": {
+        "locale": "en",
+        "greeting": "Dartagnan here! Ready for your World Cup adventure?",
+        "guidance": "Codex tracks PATH congestion and opens the blue corridor when you're five minutes out.",
+        "celebration": "Meet me at the Horizon shuttle stand if extra time goes long."
+      },
+      "es": {
+        "locale": "es",
+        "greeting": "¡Soy Dartagnan! ¿Listo para tu aventura mundialista?",
+        "guidance": "Codex monitorea PATH y NJ Transit para que entres sin filas eternas.",
+        "celebration": "Tras el partido te guiaré al ferry del Hudson o al bus rojo.",
+      },
+      "fr": {
+        "locale": "fr",
+        "greeting": "C'est Dartagnan ! Prêt pour ton aventure Coupe du Monde ?",
+        "guidance": "Codex surveille PATH/NJ Transit et t'ouvre le couloir bleu au bon moment.",
+        "celebration": "On se retrouve porte C pour rentrer en fanfare !"
+      }
+    },
+    "codexiergeCues": [
+      { "step": "GREETING", "locale": "fr", "caption": "Bienvenue dans le tunnel bleu, on y est presque !", "durationMs": 3200 },
+      { "step": "PLAN", "locale": "fr", "caption": "Je t'aligne avec le prochain PATH pour éviter la surcharge.", "durationMs": 4000 },
+      { "step": "GUIDE", "locale": "fr", "caption": "Suis les fumigènes bleus, Codex a sécurisé ton entrée ADA.", "durationMs": 4200 },
+      { "step": "CELEBRATE", "locale": "fr", "caption": "On se regroupe porte C pour la célébration finale !", "durationMs": 3600 },
+      { "step": "FAREWELL", "locale": "fr", "caption": "À la prochaine victoire, ami!", "durationMs": 3000 }
+    ],
+    "provenance": {
+      "script_generator": "static",
+      "social_sources": [
+        { "platform": "instagram", "handle": "@lesbleusnyc", "url": "https://instagram.com/p/CodbleusMetLife", "capturedAt": "2025-07-18T19:10:00Z" },
+        { "platform": "tiktok", "handle": "@njtransit", "url": "https://www.tiktok.com/@njtransit/video/7425195101", "capturedAt": "2025-07-18T19:25:00Z" }
+      ]
+    }
+  }
+}

@@ -26,6 +26,7 @@ export interface ScriptBeat {
 export interface CodexiergeScript {
   beats: ScriptBeat[];
   locale: 'en' | 'es' | 'fr';
+  beatsByLocale?: Partial<Record<'en' | 'es' | 'fr', ScriptBeat[]>>;
   provenance?: Record<string, unknown>;
 }
 
@@ -42,10 +43,29 @@ export interface DecisionLog {
   metadata: Record<string, unknown>;
 }
 
+type AccessibilityAudioEntry =
+  | string
+  | {
+      text: string;
+      url?: string;
+    };
+
 export interface HighlightNarrative {
   id: string;
   videoUrl: string;
+  videoByLocale?: Partial<Record<'en' | 'es' | 'fr', string>>;
   transcript: Record<'en' | 'es' | 'fr', string>;
+  accessibility?: Partial<
+    Record<
+      'en' | 'es' | 'fr',
+      {
+        captions: Record<string, string>;
+        audioDescriptions: Record<string, AccessibilityAudioEntry>;
+        hapticCues: Record<string, string>;
+        altText: Record<string, string>;
+      }
+    >
+  >;
   keyframes: string[];
   relatedPoiIds: string[];
   rationale: DecisionLog;

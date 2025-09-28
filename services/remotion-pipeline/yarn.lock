@@ -197,7 +197,7 @@
     style-loader "4.0.0"
     webpack "5.96.1"
 
-"@remotion/cli@^4.0.143":
+"@remotion/cli@^4.0.354":
   version "4.0.354"
   resolved "https://registry.yarnpkg.com/@remotion/cli/-/cli-4.0.354.tgz#bc17670ebe75f2cc550289a7357ce655d05a1dfd"
   integrity sha512-uHsOjQVVBJSv+sR62wRzFC1+eRE5PtEiLEdZFOA3k3hDxhI1Vjms+yW++2nWN+7cVTWFZ4EUjMbioxH7LcaiXQ==
@@ -249,7 +249,7 @@
   resolved "https://registry.yarnpkg.com/@remotion/compositor-win32-x64-msvc/-/compositor-win32-x64-msvc-4.0.354.tgz#36c5d1e1b8147eb54cd2e1ad4d969158d850f985"
   integrity sha512-rawGre2PoFv1kTp9BtPhfrSYxiMkAjaKPz+74i5ZEr1M5b8kRZxBSIqlAPIX+kakJUnLH+xoIEiujAqg426u7A==
 
-"@remotion/google-fonts@^4.0.143":
+"@remotion/google-fonts@^4.0.354":
   version "4.0.354"
   resolved "https://registry.yarnpkg.com/@remotion/google-fonts/-/google-fonts-4.0.354.tgz#d6fa9df6b8cec23a8c972d71630d48eca37ec62f"
   integrity sha512-ZmTFAmy3jCMk+mec43PkMOuECJjchszU0Uoiwmw4NarN/QsnLadKQ61DFD3lYrXcdFsaDsUTfZ6zKSiwUq7ErA==
@@ -1210,7 +1210,7 @@ recast@0.23.11:
     tiny-invariant "^1.3.3"
     tslib "^2.0.1"
 
-remotion@4.0.354, remotion@^4.0.143:
+remotion@4.0.354, remotion@^4.0.354:
   version "4.0.354"
   resolved "https://registry.yarnpkg.com/remotion/-/remotion-4.0.354.tgz#7800a823599b0706dbb58d9e7cf5b862d846a9d0"
   integrity sha512-nOtZt3tRgrF3S0+cSD3nWSJiPcIUfC12RZ0wXauOxzbLban7dQXgjBbckQtgeJufMxwbhUyjhq/VucZ+G16drA==

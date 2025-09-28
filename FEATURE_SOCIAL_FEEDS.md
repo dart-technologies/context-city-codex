@@ -187,3 +187,4 @@ For the GPT-5 hackathon, the MVP focuses on Spain vs. France fans arriving in Ne
 * Determine the rubric for when the Codex explicitly explains curation choices vs. implicitly guides the user.
 * Confirm reliability windows for real-time transit and RSVP feeds on event day.
 * Decide on implementation approach for Dartagnan animation (static overlay vs. lightweight motion).
+* **Post-hackathon exploration:** Evaluate a dynamic React-based highlight renderer that streams frames in real time (instead of pre-rendered MP4s) for highly personalized sessions; compare GPU/runtime costs, accessibility impacts, and hybrid rollout options against the current MP4 pipeline.

@@ -91,6 +91,11 @@ class Storyboard:
                     locale: asdict(narration)
                     for locale, narration in self.narrative.narrations.items()
                 },
+                'translations': self.narrative.translations,
+                'accessibility': {
+                    locale: asdict(assets)
+                    for locale, assets in self.narrative.accessibility.items()
+                },
             },
             'segments': [
                 {
@@ -238,11 +243,24 @@ class CreatomateRenderer:
             'segments': storyboard.to_dict()['segments'],
             'render_payload': render_payload,
             'accessibility': {
-                'captions': bool(render_payload.get('modifications')),
-                'locales': [storyboard.narrative.language],
+                'locales': list(storyboard.narrative.accessibility.keys()) or [storyboard.narrative.language],
                 'subtitle_locales': list(storyboard.narrative.narrations.keys()),
                 'voice_locales': list(storyboard.narrative.narrations.keys()),
-                'has_audio_description': False,
+                'audio_description_locales': [
+                    locale
+                    for locale, assets in storyboard.narrative.accessibility.items()
+                    if any(assets.audio_descriptions.values())
+                ],
+                'haptic_locales': [
+                    locale
+                    for locale, assets in storyboard.narrative.accessibility.items()
+                    if any(assets.haptic_cues.values())
+                ],
+                'alt_text_locales': [
+                    locale
+                    for locale, assets in storyboard.narrative.accessibility.items()
+                    if any(assets.alt_text.values())
+                ],
             },
             'provenance': storyboard.narrative.provenance,
         }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill, Audio, Sequence, useCurrentFrame, useVideoConfig} from 'remotion';
+import {AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {CodexHighlightProps} from '../types';
 
 const fontFamily = '"Helvetica Neue", "Segoe UI", sans-serif';
@@ -23,9 +23,15 @@ const fadeOut = (frame: number, totalFrames: number, duration = 15) => {
 };
 
 
-const resolveMediaUrl = (url: string) => {
-  if (url?.startsWith('static://')) {
+const resolveAssetUrl = (url?: string | null) => {
+  if (!url) {
+    return null;
+  }
+  if (url.startsWith('static://')) {
     return staticFile(url.replace('static://', ''));
+  }
+  if (url.startsWith('/')) {
+    return staticFile(url.slice(1));
   }
   return url;
 };
@@ -59,7 +65,7 @@ const Segment: React.FC<{
     >
       <AbsoluteFill
         style={{
-          backgroundImage: `url(${resolveMediaUrl(segment.mediaUrl)})`,
+          backgroundImage: `url(${resolveAssetUrl(segment.mediaUrl)})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'brightness(0.6)',
@@ -303,8 +309,10 @@ export const CodexHighlightVideo: React.FC<CodexHighlightProps> = (props) => {
       <Sequence from={fps * 3 + sequences.length * (segmentFrames - transitionFrames)} durationInFrames={fps * 3}>
         <Outro props={props} />
       </Sequence>
-      {ambient ? <Audio src={ambient} /> : null}
-      {narration?.audioUrl ? <Audio src={narration.audioUrl} /> : null}
+      {resolveAssetUrl(ambient) ? <Audio src={resolveAssetUrl(ambient)!} /> : null}
+      {resolveAssetUrl(narration?.audioUrl) ? (
+        <Audio src={resolveAssetUrl(narration?.audioUrl)!} />
+      ) : null}
     </AbsoluteFill>
   );
 };

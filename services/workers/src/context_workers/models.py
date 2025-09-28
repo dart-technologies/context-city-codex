@@ -81,6 +81,15 @@ class LocaleNarration:
 
 
 @dataclass
+class AccessibilityAssets:
+    locale: str
+    captions: Dict[str, str] = field(default_factory=dict)
+    audio_descriptions: Dict[str, str] = field(default_factory=dict)
+    haptic_cues: Dict[str, str] = field(default_factory=dict)
+    alt_text: Dict[str, str] = field(default_factory=dict)
+
+
+@dataclass
 class HighlightNarrative:
     asset_ids: List[str]
     summary: str
@@ -91,6 +100,8 @@ class HighlightNarrative:
     codexierge: Dict[str, 'CodexiergeDialogue'] = field(default_factory=dict)
     narrations: Dict[str, LocaleNarration] = field(default_factory=dict)
     provenance: Dict[str, Any] = field(default_factory=dict)
+    translations: Dict[str, Dict[str, str]] = field(default_factory=dict)
+    accessibility: Dict[str, AccessibilityAssets] = field(default_factory=dict)
 
 
 @dataclass

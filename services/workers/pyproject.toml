@@ -10,6 +10,9 @@ packages = [{ include = "context_workers", from = "src" }]
 python = "^3.11"
 pydantic = "^2.7.0"
 google-cloud-storage = "^3.4.0"
+fastapi = "^0.115.0"
+httpx = "^0.27.0"
+uvicorn = {version = "^0.30.0", extras = ["standard"]}
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.0"

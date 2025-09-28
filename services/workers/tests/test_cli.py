@@ -7,19 +7,27 @@ from context_workers.cli import main
 def test_cli_demo(tmp_path: Path, monkeypatch, capsys):
     fixture = Path('fixtures/sample_assets.json')
     monkeypatch.chdir(Path(__file__).resolve().parents[1])
-    main(['demo', '--input', str(fixture), '--frame-sample-size', '2'])
+    main(['demo', '--input', str(fixture), '--frame-sample-size', '2', '--voiceover-locales', 'en,es,fr'])
     output = capsys.readouterr().out
     payload = json.loads(output)
     assert 'narrative' in payload
     assert len(payload['narrative']['frames']) == 2
     assert payload['narrative']['script']['beats']
     assert payload['narrative']['codexierge']['en']
+    assert 'translations' in payload['narrative']
     assert 'remotionProps' in payload
     assert len(payload['remotionProps']['segments']) == 2
     assert payload['remotionProps']['segments'][0]['subtitles']['en']
     assert 'es' in payload['remotionProps']['narrations']
     assert 'fr' in payload['remotionProps']['narrations']
     assert payload['remotionProps']['segments'][0]['subtitles']['es']
+    assert payload['narrative']['translations']['es']['narrative.summary'] == payload['narrative']['summary']
+    assert payload['narrative']['translations']['fr']['narrative.summary'].startswith('[fr]')
+    accessibility = payload['narrative']['accessibility']
+    assert 'en' in accessibility and 'audio_descriptions' in accessibility['en']
+    remotion_access = payload['remotionProps']['accessibility']
+    assert remotion_access['fr']['audioDescriptions']['asset-1']
+    assert remotion_access['es']['altText']['asset-2']
 
 
 def test_cli_render_builds_creatomate_payload(tmp_path: Path, monkeypatch, capsys):
@@ -37,6 +45,7 @@ def test_cli_render_builds_creatomate_payload(tmp_path: Path, monkeypatch, capsy
         '--creatomate-clip-duration', '4',
         '--storage-output-dir', str(output_dir),
         '--storage-base-url', 'https://cdn.context.city/renders',
+        '--voiceover-locales', 'en,es,fr',
     ])
     output = capsys.readouterr().out
     payload = json.loads(output)
@@ -51,6 +60,8 @@ def test_cli_render_builds_creatomate_payload(tmp_path: Path, monkeypatch, capsy
     assert payload['remotionProps']['segments'][0]['subtitles']['en']
     assert payload['remotionProps']['narrations']['en']['subtitles']['asset-1']
     assert payload['remotionProps']['narrations']['es']['subtitles']['asset-2']
+    assert payload['storyboard']['narrative']['translations']['fr']['narrative.summary'].startswith('[fr]')
+    assert payload['storyboard']['narrative']['accessibility']['es']['audio_descriptions']['asset-1']
 
 
 def test_cli_writes_remotion_props_file(tmp_path: Path, monkeypatch, capsys):
@@ -81,6 +92,7 @@ def test_cli_remotion_media_dir_overrides(tmp_path: Path, monkeypatch, capsys):
         '--input', str(fixture),
         '--frame-sample-size', '2',
         '--remotion-media-dir', str(media_dir),
+        '--voiceover-locales', 'en,es,fr',
     ])
     payload = json.loads(capsys.readouterr().out)
     media_urls = [seg['mediaUrl'] for seg in payload['remotionProps']['segments']]

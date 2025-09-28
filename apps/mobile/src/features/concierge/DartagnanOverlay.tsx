@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useReducer } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useMemo, useReducer, useState } from 'react';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { CodexiergeNarrationCue, ItineraryStep } from '../../types/highlight';
+import { COLORS } from '../../theme/colors';
 
 type Phase = 'GREETING' | 'PLAN' | 'BOOK' | 'GUIDE' | 'CELEBRATE' | 'FAREWELL';
 
@@ -37,10 +38,12 @@ type Props = {
 
 export function DartagnanOverlay({ cues, itinerary, locale, onSelectCTA }: Props) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [isExpanded, setExpanded] = useState(false);
 
   useEffect(() => {
     if (!cues.length) {
       dispatch({ type: 'RESET' });
+      setExpanded(false);
       return;
     }
 
@@ -70,27 +73,45 @@ export function DartagnanOverlay({ cues, itinerary, locale, onSelectCTA }: Props
   );
 
   return (
-    <View style={styles.overlay} pointerEvents="box-none">
-      <View style={styles.avatarContainer}>
-        <Image
-          source={require('../../../assets/codex/dartagnan.png')}
-          style={styles.avatar}
-          accessibilityIgnoresInvertColors
-        />
-        <View style={styles.captionBubble}>
-          <Text style={styles.captionText}>{state.currentCue?.caption ?? defaultCaption(locale)}</Text>
-        </View>
-      </View>
-      <View style={styles.timeline}>
-        {journeySteps.map((step) => (
-          <View key={step.id} style={styles.timelineItem}>
-            <Text style={styles.timelineLabel}>{step.label}</Text>
-            <Text style={styles.timelineDescription}>{step.description}</Text>
-            <Text accessibilityRole="button" style={styles.timelineCTA} onPress={() => onSelectCTA(step)}>
-              {ctaLabel(step.action)}
-            </Text>
+    <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
+      <View style={styles.avatarOverlay} pointerEvents="box-none">
+        <View style={styles.avatarContainer}>
+          <Image
+            source={require('../../../assets/codex/dartagnan.png')}
+            style={styles.avatar}
+            accessibilityIgnoresInvertColors
+          />
+          <View style={styles.captionBubble}>
+            <Text style={styles.captionText}>{state.currentCue?.caption ?? defaultCaption(locale)}</Text>
           </View>
-        ))}
+        </View>
+        <Pressable
+          style={[styles.toggleButton, isExpanded && styles.toggleButtonActive]}
+          onPress={() => setExpanded((prev) => !prev)}
+          accessibilityRole="button"
+          accessibilityLabel={isExpanded ? 'Hide itinerary' : 'Plan itinerary'}
+        >
+          <Text style={[styles.toggleButtonText, isExpanded && styles.toggleButtonTextActive]}>
+            {isExpanded ? 'Hide' : 'Plan'}
+          </Text>
+        </Pressable>
+        {isExpanded && (
+          <View style={styles.timeline}>
+            {journeySteps.map((step) => (
+              <View key={step.id} style={styles.timelineItem}>
+                <Text style={styles.timelineLabel}>{step.label}</Text>
+                <Text style={styles.timelineDescription}>{step.description}</Text>
+                <Pressable
+                  accessibilityRole="button"
+                  style={styles.timelineCTA}
+                  onPress={() => onSelectCTA(step)}
+                >
+                  <Text style={styles.timelineCTAText}>{ctaLabel(step.action)}</Text>
+                </Pressable>
+              </View>
+            ))}
+          </View>
+        )}
       </View>
     </View>
   );
@@ -123,53 +144,93 @@ function ctaLabel(action: ItineraryStep['action']) {
 }
 
 const styles = StyleSheet.create({
-  overlay: {
+  avatarOverlay: {
     position: 'absolute',
-    bottom: 24,
+    top: 20,
     left: 16,
-    right: 16,
-    gap: 16,
+    width: 260,
+    gap: 10,
   },
   avatarContainer: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-    gap: 12,
+    gap: 10,
   },
   avatar: {
-    width: 72,
-    height: 72,
-    borderRadius: 36,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
   },
   captionBubble: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.75)',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: 16,
+    backgroundColor: COLORS.button,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: COLORS.divider,
   },
   captionText: {
-    color: 'white',
-    fontSize: 16,
+    color: COLORS.textPrimary,
+    fontSize: 14,
+    lineHeight: 18,
+  },
+  toggleButton: {
+    alignSelf: 'flex-end',
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    borderRadius: 999,
+    backgroundColor: COLORS.button,
+    borderWidth: 1,
+    borderColor: COLORS.divider,
+  },
+  toggleButtonActive: {
+    backgroundColor: COLORS.accentMuted,
+    borderColor: COLORS.accentBorder,
+  },
+  toggleButtonText: {
+    color: COLORS.textSecondary,
+    fontSize: 12,
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
+  toggleButtonTextActive: {
+    color: COLORS.accent,
   },
   timeline: {
-    backgroundColor: 'rgba(10,10,10,0.9)',
+    backgroundColor: COLORS.surface,
     borderRadius: 16,
-    padding: 16,
-    gap: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    gap: 10,
+    borderWidth: 1,
+    borderColor: COLORS.divider,
   },
   timelineItem: {
-    gap: 4,
+    gap: 6,
   },
   timelineLabel: {
     fontWeight: '700',
-    color: 'white',
+    color: COLORS.textPrimary,
+    fontSize: 14,
   },
   timelineDescription: {
-    color: '#d0d0d0',
+    color: COLORS.textSecondary,
+    fontSize: 12,
+    lineHeight: 16,
   },
   timelineCTA: {
-    color: '#1f60ff',
-    fontWeight: '600',
-    marginTop: 4,
+    marginTop: 8,
+    alignSelf: 'flex-start',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 999,
+    backgroundColor: COLORS.accent,
+  },
+  timelineCTAText: {
+    color: '#080a12',
+    fontWeight: '700',
+    fontSize: 12,
   },
 });

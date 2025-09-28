@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, act } from '@testing-library/react-native';
+import { render, act, fireEvent } from '@testing-library/react-native';
 import { DartagnanOverlay } from '../DartagnanOverlay';
 import { felixNarrative } from '../../../mocks/felix';
 
@@ -24,8 +24,14 @@ describe('DartagnanOverlay', () => {
       jest.runOnlyPendingTimers();
     });
 
+    const planToggle = getByText('Plan');
+    act(() => {
+      fireEvent.press(planToggle);
+    });
+
+    expect(getByText(/À bientôt, ami!/i)).toBeTruthy();
+
     const planButtons = getAllByText('Plan itinerary');
     expect(planButtons.length).toBeGreaterThan(0);
-    expect(getByText('À bientôt, ami!')).toBeTruthy();
   });
 });

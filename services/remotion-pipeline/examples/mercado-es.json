@@ -1,0 +1,54 @@
+{
+  "poi": {
+    "id": "poi-mercado",
+    "name": "Mercado Little Spain",
+    "locale": "es",
+    "distance": "Steps from 34th St–Hudson Yards",
+    "hours": "",
+    "tags": ["mercado", "worldcup"]
+  },
+  "summary": "Codex eleva la previa española: cánticos, tapas y ruta al estadio en un mismo vistazo.",
+  "codexiergeLocales": ["es"],
+  "segments": [
+    {
+      "assetId": "asset-mercado-1",
+      "mediaUrl": "https://cdn.contextcity.dev/reels/mercado-frame1.jpg",
+      "caption": "Chants igniting Mercado",
+      "title": "Bienvenida",
+      "rationale": "Cánticos de La Roja y vermut tempranero atraen a la peña antes del partido.",
+      "subtitles": {
+        "es": "¡Vamos España! Te guío entre tapas y cánticos.",
+        "en": "La Roja chants shake Mercado Little Spain before kickoff.",
+        "fr": "Les chants espagnols font vibrer Mercado avant le match."
+      }
+    },
+    {
+      "assetId": "asset-mercado-2",
+      "mediaUrl": "https://cdn.contextcity.dev/reels/mercado-frame2.jpg",
+      "caption": "Hudson Yards fan march",
+      "title": "Camino al triunfo",
+      "rationale": "Codex traza la ruta Metro 7 + PATH hacia MetLife con contingencia ferry.",
+      "subtitles": {
+        "es": "Metro 7 hasta Hudson Yards y PATH directo al estadio.",
+        "en": "Hop the 7 train then PATH straight to MetLife Stadium.",
+        "fr": "Ligne 7 puis PATH pour arriver sans stress au stade."
+      }
+    }
+  ],
+  "brandColor": "#0b1221",
+  "accentColor": "#f5c333",
+  "clipDurationSeconds": 5,
+  "transitionMs": 500,
+  "soundtrackUrl": "static://audio/silence.mp3",
+  "narrations": {
+    "es": {
+      "locale": "es",
+      "audioUrl": "static://audio/silence.mp3",
+      "voice": "codex-es",
+      "subtitles": {
+        "asset-mercado-1": "¡Vamos España! Te guío entre tapas y cánticos.",
+        "asset-mercado-2": "Metro 7 hasta Hudson Yards y PATH directo al estadio."
+      }
+    }
+  }
+}

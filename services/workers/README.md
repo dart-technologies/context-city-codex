@@ -73,6 +73,38 @@ poetry run content-workers demo \
 
 Without configuration the CLI uses the static three-beat script generator.
 
+## Localization workflow
+
+The CLI now batches captions, rationale, and script beats through a GPT-5 translation service. Configure it by exporting env vars or passing explicit flags:
+
+```bash
+export CODEX_TRANSLATION_ENDPOINT="https://api.context.city/translate"
+export CODEX_TRANSLATION_API_KEY="<gpt-key>"
+
+poetry run content-workers demo \
+  --input fixtures/sample_assets.json \
+  --voiceover-locales en,es,fr \
+  --translator gpt
+```
+
+You can also override settings inline (`--translation-endpoint`, `--translation-api-key`, `--translation-timeout`, `--translation-max-attempts`). When the endpoint is absent, the CLI falls back to a static translator that labels localized strings with the requested locale—useful for offline demos and tests.
+
+### Accessibility assets
+
+Generate captions, audio descriptions, haptic cues, and alt-text fallbacks directly from the narrative output. Configure the GPT-backed generator the same way:
+
+```bash
+export CODEX_ACCESSIBILITY_ENDPOINT="https://api.context.city/accessibility"
+export CODEX_ACCESSIBILITY_API_KEY="<gpt-key>"
+
+poetry run content-workers demo \
+  --input fixtures/sample_assets.json \
+  --voiceover-locales en,es,fr \
+  --accessibility-generator gpt
+```
+
+Without credentials, the CLI synthesizes demo-friendly accessibility copy using heuristics so Remotion and Expo fallbacks always have something to surface.
+
 ## Codexierge dialogues
 
 The narrative pipeline now emits Dartagnan-ready dialogue for English, Spanish, and French locales. The CLI output includes a `codexierge` map keyed by locale.
@@ -91,6 +123,23 @@ poetry run content-workers demo \
 ```
 
 Provide local art by adding `--remotion-media-dir services/remotion-pipeline/public/assets` (the CLI swaps each asset URL with a matching filename). Place royalty-free JPG/PNG files such as `asset-1.jpg` and `asset-2.jpg` in that folder before rendering to avoid remote fetch errors.
+
+## Preference inference microservice
+
+Run the lightweight FastAPI wrapper that calls GPT-5 to infer language and accessibility preferences:
+
+```bash
+poetry run uvicorn context_workers.api:app --reload --port 8082
+```
+
+Set the upstream GPT endpoint and key before starting (these match the CLI env vars):
+
+```bash
+export CODEX_PREFERENCES_ENDPOINT="https://api.context.city/preferences"
+export CODEX_PREFERENCES_API_KEY="<gpt-key>"
+```
+
+POST `http://localhost:8082/preferences` with `{ "profile": { ... } }` to receive the same payload the CLI consumes. The service shares the coercion logic used by `detect_preferences`, so callers can swap between the HTTP endpoint and the in-process helper without code changes.
 
 
 ### Google Cloud Storage
@@ -112,4 +161,3 @@ poetry run content-workers render \
 ```
 
 This uploads manifests, payloads, and (optionally) the rendered MP4 into `gs://codex-reels-demo/world-cup/poi-felix/<render-id>/` and returns signed URLs for the concierge layer.
-

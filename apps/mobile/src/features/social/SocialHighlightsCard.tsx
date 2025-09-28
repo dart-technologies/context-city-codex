@@ -3,6 +3,7 @@ import { ActivityIndicator, ImageBackground, Pressable, StyleSheet, Text, View }
 import { HighlightSummary } from '../../types/highlight';
 import { useHighlightSummary } from '../../hooks/useHighlightSummary';
 import { useLocalization } from '../../hooks/useLocalization';
+import { COLORS } from '../../theme/colors';
 
 type Props = {
   poiId: string;
@@ -21,7 +22,7 @@ export function SocialHighlightsCard({ poiId, onPlay, userLocale }: Props) {
 
   if (isLoading) {
     return (
-      <View style={[styles.card, styles.shimmer]}> 
+      <View style={[styles.card, styles.shimmer]}>
         <ActivityIndicator accessibilityLabel={formatMessage('codex.loading', 'Codex is gathering whispers…')} />
         <Text style={styles.loadingText}>{formatMessage('codex.loading', 'Codex is gathering whispers…')}</Text>
       </View>
@@ -68,7 +69,9 @@ function stylesFactory() {
     card: {
       borderRadius: 16,
       overflow: 'hidden',
-      backgroundColor: '#0a0a0a',
+      backgroundColor: COLORS.surface,
+      borderWidth: 1,
+      borderColor: COLORS.divider,
     },
     shimmer: {
       alignItems: 'center',
@@ -77,11 +80,11 @@ function stylesFactory() {
     },
     loadingText: {
       marginTop: 12,
-      color: '#d0d0d0',
+      color: COLORS.textSecondary,
     },
     errorText: {
       padding: 24,
-      color: '#d0d0d0',
+      color: COLORS.textSecondary,
     },
     preview: {
       height: 192,
@@ -95,26 +98,29 @@ function stylesFactory() {
       width: 64,
       height: 64,
       borderRadius: 32,
-      backgroundColor: 'rgba(0,0,0,0.6)',
+      backgroundColor: COLORS.button,
       alignItems: 'center',
       justifyContent: 'center',
+      borderWidth: 1,
+      borderColor: COLORS.divider,
     },
     playLabel: {
       fontSize: 32,
-      color: 'white',
+      color: COLORS.textPrimary,
     },
     content: {
       padding: 16,
       gap: 8,
+      backgroundColor: COLORS.surface,
     },
     title: {
       fontSize: 18,
       fontWeight: '700',
-      color: 'white',
+      color: COLORS.textPrimary,
     },
     tagline: {
       fontSize: 14,
-      color: '#cccccc',
+      color: COLORS.textSecondary,
     },
     ctaRow: {
       flexDirection: 'row',
@@ -125,12 +131,14 @@ function stylesFactory() {
       paddingHorizontal: 12,
       paddingVertical: 6,
       borderRadius: 999,
-      backgroundColor: '#1f60ff',
+      backgroundColor: COLORS.accentMuted,
+      borderWidth: 1,
+      borderColor: COLORS.accentBorder,
     },
     ctaText: {
       fontSize: 12,
       fontWeight: '600',
-      color: 'white',
+      color: COLORS.accent,
     },
   });
 }

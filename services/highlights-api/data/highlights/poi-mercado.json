@@ -1,0 +1,120 @@
+{
+  "summary": {
+    "id": "poi-mercado",
+    "title": "Mercado Little Spain",
+    "previewUrl": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80",
+    "locale": "es",
+    "tagline": "Codex detectó cánticos rojos y tapas listas para la final.",
+    "ctas": ["plan", "book", "guide"]
+  },
+  "narrative": {
+    "id": "poi-mercado",
+    "videoUrl": "https://cdn.contextcity.dev/reels/mercado-es.mp4",
+    "videoByLocale": {
+      "es": "https://cdn.contextcity.dev/reels/mercado-es.mp4",
+      "en": "https://cdn.contextcity.dev/reels/codex-highlight.mp4",
+      "fr": "https://cdn.contextcity.dev/reels/felix-fr.mp4"
+    },
+    "transcript": {
+      "es": "¡España está aquí! Mercado vibra con tortilla, vermut y cánticos pre-partido.",
+      "en": "Spain is in the house—Mercado hums with vermouth, tapas, and match chants.",
+      "fr": "Les supporters espagnols enflamment Mercado avec tapas et chants avant-match."
+    },
+    "keyframes": [
+      "https://cdn.contextcity.dev/reels/mercado-frame1.jpg",
+      "https://cdn.contextcity.dev/reels/mercado-frame2.jpg"
+    ],
+    "relatedPoiIds": ["poi-felix", "poi-liberty-fanfest"],
+    "rationale": {
+      "highlightId": "poi-mercado",
+      "reasons": [
+        {
+          "id": "chant",
+          "label": "Chants igniting Mercado",
+          "icon": "🎺",
+          "description": "Live clips tagged #MercadoLittleSpain show La Roja coros two hours before kickoff."
+        },
+        {
+          "id": "cuisine",
+          "label": "All-day tapas",
+          "icon": "🥘",
+          "description": "Codex logged 1,800 mentions of vermouth flights and jamón boards for matchday brunch."
+        }
+      ],
+      "metadata": {
+        "distance": "Steps from 34th St–Hudson Yards",
+        "last_updated": "2025-07-18T18:22:00Z"
+      }
+    },
+    "itinerary": [
+      {
+        "id": "plan",
+        "label": "Planificar mi día",
+        "description": "Desayuno, fan fest y transporte con Codex.",
+        "action": "plan"
+      },
+      {
+        "id": "book",
+        "label": "Reservar en Mercado",
+        "description": "Asegura una mesa para el banderazo.",
+        "action": "book"
+      },
+      {
+        "id": "guide",
+        "label": "Guíame al estadio",
+        "description": "Metro 7 y PATH bilingües con respaldo ferry.",
+        "action": "guide"
+      },
+      {
+        "id": "celebrate",
+        "label": "Celebrar en el Hudson",
+        "description": "Ferry nocturno con fuegos rojos y amarillos.",
+        "action": "celebrate"
+      }
+    ],
+    "script": {
+      "beats": [
+        { "id": "beat-1", "title": "Bienvenida", "content": "Codex abre Mercado con tortilla recién hecha y cánticos de La Roja." },
+        { "id": "beat-2", "title": "Fan fest", "content": "Seguimos a la peña hacia Hudson Yards con coreografías ensayadas." },
+        { "id": "beat-3", "title": "Camino al triunfo", "content": "Codex te cruza al estadio en metro y ferry rojo y amarillo." }
+      ],
+      "locale": "es",
+      "provenance": { "generator": "static" }
+    },
+    "codexierge": {
+      "en": {
+        "locale": "en",
+        "greeting": "Dartagnan here! Ready for your World Cup adventure?",
+        "guidance": "Codex spotted celebration, tapas — follow my cues for smooth hops.",
+        "celebration": "Meet me riverside for fireworks if La Roja triumphs! 🥳"
+      },
+      "es": {
+        "locale": "es",
+        "greeting": "¡Soy Dartagnan! ¿Listo para tu aventura mundialista?",
+        "guidance": "Codex vio cánticos, tapas — sigue mis pistas y llegas sin estrés.",
+        "celebration": "¡Te espero en el Hudson para brindar tras la victoria! 🥳"
+      },
+      "fr": {
+        "locale": "fr",
+        "greeting": "C'est Dartagnan ! Prêt pour ta virée Coupe du Monde ?",
+        "guidance": "Codex détecte tapas et chants – suis mes indications multilingues.",
+        "celebration": "On rejoint la flotte sur l'Hudson pour fêter la Roja ! 🥳"
+      }
+    },
+    "codexiergeCues": [
+      { "step": "GREETING", "locale": "es", "caption": "¡Vamos España! Te guío entre tapas y cánticos.", "durationMs": 3500 },
+      { "step": "PLAN", "locale": "es", "caption": "Arrancamos con desayuno castizo y marcha al fan fest.", "durationMs": 4000 },
+      { "step": "BOOK", "locale": "es", "caption": "Reservo la barra de Jamón & Queso antes de que se llene.", "durationMs": 4000 },
+      { "step": "GUIDE", "locale": "es", "caption": "Metro 7 hasta Hudson Yards y después PATH directo al estadio.", "durationMs": 4500 },
+      { "step": "CELEBRATE", "locale": "es", "caption": "Si ganamos, ferry nocturno con fuegos en el Hudson.", "durationMs": 4000 },
+      { "step": "FAREWELL", "locale": "es", "caption": "¡Hasta la final, amigo!", "durationMs": 3000 }
+    ],
+    "provenance": {
+      "script_generator": "static",
+      "social_sources": [
+        { "platform": "instagram", "handle": "@mercadolittlespain", "url": "https://instagram.com/p/CodbMercadoSpain", "capturedAt": "2025-07-18T16:00:00Z" },
+        { "platform": "tiktok", "handle": "@larojanyc", "url": "https://www.tiktok.com/@larojanyc/video/7424090101", "capturedAt": "2025-07-18T17:40:00Z" }
+      ]
+    }
+  }
+}

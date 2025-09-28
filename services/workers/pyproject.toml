@@ -9,6 +9,7 @@ packages = [{ include = "context_workers", from = "src" }]
 [tool.poetry.dependencies]
 python = "^3.11"
 pydantic = "^2.7.0"
+google-cloud-storage = "^3.4.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.0"

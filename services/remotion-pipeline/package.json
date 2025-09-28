@@ -1,0 +1,22 @@
+{
+  "name": "codex-remotion-pipeline",
+  "version": "0.1.0",
+  "description": "Remotion renderer for ContextCity Codex highlight reels.",
+  "scripts": {
+    "render": "remotion render src/index.tsx CodexHighlightVideo out/codex-highlight.mp4 --props ./examples/sample-narrative.json",
+    "render:props": "remotion render src/index.tsx CodexHighlightVideo out/codex-highlight.mp4",
+    "still": "remotion still src/index.tsx CodexHighlightVideo out/codex-highlight.png --props ./examples/sample-narrative.json",
+    "preview": "remotion preview"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.143",
+    "@remotion/google-fonts": "^4.0.143",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "^4.0.143"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}

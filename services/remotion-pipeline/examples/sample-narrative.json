@@ -1,0 +1,79 @@
+{
+  "poi": {
+    "id": "poi-demo",
+    "name": "Demo POI",
+    "locale": "es",
+    "distance": "0.8 km",
+    "hours": "10:00-23:00",
+    "tags": [
+      "mercado",
+      "worldcup"
+    ]
+  },
+  "summary": "Codex blend of 2 moments: Fans flooding Mercado Little Spain; Liberty State Park fan fest rehearsal.",
+  "codexiergeLocales": [
+    "en",
+    "es",
+    "fr"
+  ],
+  "segments": [
+    {
+      "assetId": "asset-1",
+      "mediaUrl": "https://pyxis.nymag.com/v1/imgs/387/f55/cf810b6546254a2b9f03230f98909e0af7-felix-01.2x.rsocial.w600.jpg",
+      "caption": "Fans flooding Mercado Little Spain",
+      "title": "Arrival",
+      "rationale": "Instagram celebration (465 engagements).",
+      "subtitles": {
+        "en": "Fans flooding Mercado Little Spain",
+        "es": "[es] Fans flooding Mercado Little Spain",
+        "fr": "[fr] Fans flooding Mercado Little Spain"
+      }
+    },
+    {
+      "assetId": "asset-2",
+      "mediaUrl": "https://mma.prnewswire.com/media/2708301/View01_B.jpg",
+      "caption": "Liberty State Park fan fest rehearsal",
+      "title": "Main Event",
+      "rationale": "TikTok general (285 engagements).",
+      "subtitles": {
+        "en": "Liberty State Park fan fest rehearsal",
+        "es": "[es] Liberty State Park fan fest rehearsal",
+        "fr": "[fr] Liberty State Park fan fest rehearsal"
+      }
+    }
+  ],
+  "brandColor": "#0b1221",
+  "accentColor": "#f5c333",
+  "clipDurationSeconds": 5,
+  "transitionMs": 500,
+  "soundtrackUrl": "https://cdn.contextcity.dev/audio/codex-demo.mp3",
+  "narrations": {
+    "en": {
+      "locale": "en",
+      "audioUrl": "https://cdn.contextcity.dev/audio/poi-demo-en.mp3",
+      "voice": "codex-en",
+      "subtitles": {
+        "asset-1": "Fans flooding Mercado Little Spain",
+        "asset-2": "Liberty State Park fan fest rehearsal"
+      }
+    },
+    "es": {
+      "locale": "es",
+      "audioUrl": "https://cdn.contextcity.dev/audio/poi-demo-es.mp3",
+      "voice": "codex-es",
+      "subtitles": {
+        "asset-1": "[es] Fans flooding Mercado Little Spain",
+        "asset-2": "[es] Liberty State Park fan fest rehearsal"
+      }
+    },
+    "fr": {
+      "locale": "fr",
+      "audioUrl": "https://cdn.contextcity.dev/audio/poi-demo-fr.mp3",
+      "voice": "codex-fr",
+      "subtitles": {
+        "asset-1": "[fr] Fans flooding Mercado Little Spain",
+        "asset-2": "[fr] Liberty State Park fan fest rehearsal"
+      }
+    }
+  }
+}

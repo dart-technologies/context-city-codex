@@ -57,11 +57,13 @@ This backlog aligns implementation work with the updated ContextCity Codex spec 
 
 ## Video Assembly Pipeline
 
-- [ ] Create reusable Remotion or managed-service templates with ContextCity branding.
-- [ ] Overlay metadata callouts (distance, hours, tags) sourced from the knowledge graph.
-- [ ] Generate machine-readable manifests describing asset sources, accessibility coverage, and Codex confidence scores.
-- [ ] Store final renditions in Cloud Storage with signed URL distribution paths.
-- [ ] Produce highlight reels for each featured POI with localized voiceovers and subtitle tracks.
+- [x] Create reusable Remotion or managed-service templates with ContextCity branding (glassmorphism Remotion kit with ContextCity palette + Dartagnan styling).
+- [x] Prototype Creatomate render payload builder and CLI dry-run flow.
+- [x] Overlay metadata callouts (distance, hours, tags) sourced from the knowledge graph (wired into Creatomate payload builder).
+- [x] Generate machine-readable manifests describing asset sources, accessibility coverage, and Codex confidence scores (see Creatomate manifest output).
+- [x] Store final renditions in Cloud Storage with signed URL distribution paths (CLI now supports GCS uploads + signed URLs with optional video copy).
+- [x] Scaffold Remotion fallback renderer for offline demos.
+- [x] Produce highlight reels for each featured POI with localized voiceovers and subtitle tracks (CLI now emits per-locale subtitles + narration manifests for Remotion/Creatomate).
 
 ## Localization & Accessibility
 

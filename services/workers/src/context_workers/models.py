@@ -69,6 +69,15 @@ class NarrativeScript:
 class HighlightFrame:
     image_url: str
     caption: Optional[str] = None
+    subtitles: Dict[str, str] = field(default_factory=dict)
+
+
+@dataclass
+class LocaleNarration:
+    locale: str
+    audio_url: Optional[str] = None
+    voice: Optional[str] = None
+    subtitles: Dict[str, str] = field(default_factory=dict)
 
 
 @dataclass
@@ -80,6 +89,7 @@ class HighlightNarrative:
     language: str = 'en'
     script: Optional['NarrativeScript'] = None
     codexierge: Dict[str, 'CodexiergeDialogue'] = field(default_factory=dict)
+    narrations: Dict[str, LocaleNarration] = field(default_factory=dict)
     provenance: Dict[str, Any] = field(default_factory=dict)
 
 

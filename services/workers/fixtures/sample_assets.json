@@ -2,7 +2,7 @@
   {
     "id": "asset-1",
     "source": "instagram",
-    "url": "https://cdn.contextcity.dev/assets/asset-1.jpg",
+    "url": "https://pyxis.nymag.com/v1/imgs/387/f55/cf810b6546254a2b9f03230f98909e0af7-felix-01.2x.rsocial.w600.jpg",
     "caption": "Fans flooding Mercado Little Spain for the match!",
     "language": "es",
     "moderation_labels": [],
@@ -14,7 +14,7 @@
   {
     "id": "asset-2",
     "source": "tiktok",
-    "url": "https://cdn.contextcity.dev/assets/asset-2.jpg",
+    "url": "https://mma.prnewswire.com/media/2708301/View01_B.jpg",
     "caption": "Liberty State Park fan fest rehearsal",
     "language": "en",
     "moderation_labels": ["crowd"],

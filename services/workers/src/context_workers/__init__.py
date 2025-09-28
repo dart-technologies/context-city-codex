@@ -10,6 +10,7 @@ from .models import (
     FilterRules,
     HighlightFrame,
     HighlightNarrative,
+    LocaleNarration,
 )
 from .scene_labelling import (
     SceneLabeler,
@@ -28,6 +29,22 @@ from .summarization import (
     ScreenAppSummarizer,
     create_summarizer,
 )
+from .video_assembly import (
+    CreatomateError,
+    CreatomateRenderConfig,
+    CreatomateRenderer,
+    PoiContext,
+    Storyboard,
+    StoryboardSegment,
+)
+from .storage import (
+    StorageConfig,
+    StorageResult,
+    LocalRenderStorage,
+    GCSRenderStorage,
+    CreatomateCopyError,
+    create_storage,
+)
 
 __all__ = [
     'filter_assets',
@@ -40,6 +57,7 @@ __all__ = [
     'FilterRules',
     'HighlightFrame',
     'HighlightNarrative',
+    'LocaleNarration',
     'SceneLabeler',
     'KeywordSceneLabeler',
     'apply_scene_labels',
@@ -51,4 +69,16 @@ __all__ = [
     'StaticSummarizer',
     'ScreenAppSummarizer',
     'create_summarizer',
+    'CreatomateError',
+    'CreatomateRenderConfig',
+    'CreatomateRenderer',
+    'PoiContext',
+    'Storyboard',
+    'StoryboardSegment',
+    'StorageConfig',
+    'StorageResult',
+    'LocalRenderStorage',
+    'GCSRenderStorage',
+    'CreatomateCopyError',
+    'create_storage',
 ]

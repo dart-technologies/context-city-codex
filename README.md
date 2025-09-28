@@ -24,3 +24,8 @@ This repository houses the hackathon build for the **GPT-5 Startup Hackathon NYC
 - All commits should land during the event and reference hackathon tasks.
 
 Let's show how Codex can guide every visitor with one friendly concierge.
+
+## Services
+- `services/highlights-api`: Node API serving highlight narratives.
+- `services/workers`: Python intelligence workers feeding the app.
+- `services/remotion-pipeline`: Remotion fallback renderer for Codex highlight reels.

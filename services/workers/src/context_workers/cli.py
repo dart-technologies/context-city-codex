@@ -5,7 +5,7 @@ import json
 from dataclasses import asdict
 import copy
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from .filtering import filter_assets, rank_assets
 from .extraction import build_highlight_narrative
@@ -23,6 +23,7 @@ from .accessibility import (
     StaticAccessibilityGenerator,
     create_accessibility_generator,
 )
+from .tts import TTSRequestItem, TTSSynthesizer, create_tts_synthesizer
 
 
 def load_assets(path: Path) -> List[Asset]:
@@ -106,6 +107,7 @@ def generate_voiceovers_and_subtitles(
     *,
     audio_prefix: str | None,
     translator,
+    tts_generator: Optional[TTSSynthesizer] = None,
 ) -> Dict[str, LocaleNarration]:
     base_locale = storyboard.narrative.language or 'en'
     narrations: Dict[str, LocaleNarration] = {}
@@ -142,14 +144,38 @@ def generate_voiceovers_and_subtitles(
             subtitle_map[segment.asset_id] = localized
 
         audio_url = None
-        if audio_prefix:
+        voice = None
+
+        if tts_generator:
+            tts_items = [
+                TTSRequestItem(id=segment.asset_id, text=subtitle_map.get(segment.asset_id, ''))
+                for segment in storyboard.segments
+            ]
+            synthesis = tts_generator.synthesize(
+                tts_items,
+                locale=locale,
+                base_locale=base_locale,
+                poi_id=storyboard.poi.id,
+            )
+            if synthesis:
+                audio_url = synthesis.audio_url or audio_url
+                voice = synthesis.voice or voice
+                for seg_id, seg_text in synthesis.segments.items():
+                    subtitle_map[seg_id] = seg_text
+                    for segment in storyboard.segments:
+                        if segment.asset_id == seg_id:
+                            segment.subtitles[locale] = seg_text
+                            if segment.frame:
+                                segment.frame.subtitles[locale] = seg_text
+
+        if not audio_url and audio_prefix:
             prefix = audio_prefix.rstrip('/')
             audio_url = f"{prefix}/{storyboard.poi.id}-{locale}.mp3"
 
         narrations[locale] = LocaleNarration(
             locale=locale,
             audio_url=audio_url,
-            voice=None,
+            voice=voice,
             subtitles=subtitle_map,
         )
 
@@ -365,6 +391,13 @@ def main(argv: List[str] | None = None) -> None:
     parser.add_argument('--remotion-media-dir', type=Path, help='Optional directory containing local media files that should replace remote asset URLs when generating Remotion props (matches by filename)')
     parser.add_argument('--voiceover-locales', help='Comma separated locales for narration + subtitles (default inferred from profile/narrative)')
     parser.add_argument('--voiceover-audio-prefix', help='Prefix URL used when fabricating narration audio paths (e.g. https://cdn.example.com/audio)')
+    parser.add_argument('--tts-generator', default='auto', help='TTS provider (auto, gpt, static, none)')
+    parser.add_argument('--tts-endpoint', help='Override TTS endpoint URL')
+    parser.add_argument('--tts-api-key', help='Override TTS API key')
+    parser.add_argument('--tts-timeout', type=float, help='TTS request timeout in seconds')
+    parser.add_argument('--tts-max-attempts', type=int, help='Max retry attempts for TTS requests')
+    parser.add_argument('--tts-default-voice', help='Default voice identifier for TTS synthesis')
+    parser.add_argument('--tts-voice-overrides', help='JSON mapping of locale to TTS voice id (e.g. {"fr": "dartagnan-fr"})')
 
     args = parser.parse_args(argv)
 
@@ -405,6 +438,23 @@ def main(argv: List[str] | None = None) -> None:
         translation_options['max_attempts'] = args.translation_max_attempts
 
     translator = create_translator(args.translator, translation_options)
+    tts_options: Dict[str, object] = {}
+    if args.tts_endpoint:
+        tts_options['endpoint'] = args.tts_endpoint
+    if args.tts_api_key:
+        tts_options['api_key'] = args.tts_api_key
+    if args.tts_timeout is not None:
+        tts_options['timeout'] = args.tts_timeout
+    if args.tts_max_attempts is not None:
+        tts_options['max_attempts'] = args.tts_max_attempts
+    if args.tts_default_voice:
+        tts_options['default_voice'] = args.tts_default_voice
+    if args.tts_voice_overrides:
+        try:
+            tts_options['voice_overrides'] = json.loads(args.tts_voice_overrides)
+        except json.JSONDecodeError as exc:
+            parser.error(f'Invalid JSON for --tts-voice-overrides: {exc}')
+    tts_generator = create_tts_synthesizer(args.tts_generator, tts_options)
     accessibility_options: Dict[str, object] = {}
     if args.accessibility_endpoint:
         accessibility_options['endpoint'] = args.accessibility_endpoint
@@ -473,6 +523,7 @@ def main(argv: List[str] | None = None) -> None:
         voiceover_locales,
         audio_prefix=args.voiceover_audio_prefix,
         translator=translator,
+        tts_generator=tts_generator,
     )
     generate_accessibility_assets(
         storyboard,

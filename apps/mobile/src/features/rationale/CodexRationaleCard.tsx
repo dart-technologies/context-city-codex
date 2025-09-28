@@ -9,7 +9,7 @@ type Props = {
 export function CodexRationaleCard({ decisionLog, onSubmitFeedback }: Props) {
   return (
     <View style={styles.container} accessibilityRole="summary">
-      <Text style={styles.heading}>Why the Codex chose this</Text>
+      <Text style={styles.heading}>Why the Codexierge chose this</Text>
       {decisionLog.reasons.map((reason) => (
         <View key={reason.id} style={styles.reasonRow}>
           <Text style={styles.reasonIcon}>{reason.icon}</Text>

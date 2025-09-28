@@ -157,19 +157,21 @@ const Segment: React.FC<{
         <div
           style={{
             position: 'absolute',
-            bottom: 60,
+            top: '50%',
             left: '50%',
-            transform: 'translateX(-50%)',
-            maxWidth: '90%',
+            transform: 'translate(-50%, -50%)',
+            maxWidth: '80%',
             backgroundColor: GLASS_BG,
             border: `1px solid ${GLASS_BORDER}`,
-            padding: '16px 32px',
-            borderRadius: 24,
-            fontSize: 42,
+            padding: '20px 36px',
+            borderRadius: 28,
+            fontSize: 44,
             fontWeight: 600,
             lineHeight: 1.3,
             textShadow: '0 4px 10px rgba(0,0,0,0.75)',
             backdropFilter: 'blur(12px)',
+            boxShadow: '0 16px 34px rgba(0,0,0,0.55)',
+            pointerEvents: 'none',
           }}
         >
           {subtitleText}

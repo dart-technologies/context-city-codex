@@ -5,6 +5,7 @@ import { SocialHighlightsCard } from '../features/social/SocialHighlightsCard';
 import { ImmersiveReelPlayer } from '../features/social/ImmersiveReelPlayer';
 import { CodexRationaleCard } from '../features/rationale/CodexRationaleCard';
 import { DartagnanOverlay } from '../features/concierge/DartagnanOverlay';
+import { ItineraryMapCard } from '../features/concierge/ItineraryMapCard';
 import { CodexiergeNarrationCue } from '../types/highlight';
 import { ScriptBeatsCard } from '../features/concierge/ScriptBeatsCard';
 import { CodexiergeDialogueCard } from '../features/concierge/CodexiergeDialogueCard';
@@ -109,7 +110,7 @@ export function PoiDetailScreen({ poiId, locale = 'en' }: Props) {
     setSelectedLocale(locale);
   }, [locale]);
 
-  const { narrative } = useHighlightSummary(selectedPoiId);
+  const { narrative, summary } = useHighlightSummary(selectedPoiId);
   const governanceReview = useMemo(() => (narrative ? auditDecisionLog(narrative.rationale) : undefined), [narrative]);
   const governanceWarningsKey = governanceReview?.warnings.join('|') ?? '';
   const highlightId = narrative?.id;
@@ -118,22 +119,38 @@ export function PoiDetailScreen({ poiId, locale = 'en' }: Props) {
     if (!narrative) {
       return [];
     }
+    const normalizedLocale = selectedLocale ?? locale ?? 'en';
+    console.info('[overlay] rebuilding cues', {
+      highlightId: narrative.id,
+      normalizedLocale,
+      selectedLocale,
+      propLocale: locale,
+      hasCodexiergeCues: Boolean(narrative.codexiergeCues?.length),
+      cueLocales: narrative.codexiergeCues?.map((cue) => cue.locale),
+    });
     if (narrative.codexiergeCues && narrative.codexiergeCues.length > 0) {
-      return narrative.codexiergeCues;
+      const localeMatched = narrative.codexiergeCues.filter((cue) => cue.locale === normalizedLocale);
+      if (localeMatched.length > 0) {
+        return localeMatched;
+      }
+      return narrative.codexiergeCues.map((cue) => {
+        const nextCue = cue.locale === normalizedLocale ? cue : { ...cue, locale: normalizedLocale };
+        return nextCue;
+      });
     }
     if (narrative.codexierge) {
-      const dialogue = narrative.codexierge[selectedLocale] ?? narrative.codexierge.en;
+      const dialogue = narrative.codexierge[normalizedLocale] ?? narrative.codexierge.en;
       if (dialogue) {
         const fallbackCues: CodexiergeNarrationCue[] = [
-          { step: 'GREETING', locale: dialogue.locale, caption: dialogue.greeting, durationMs: 4000 },
-          { step: 'PLAN', locale: dialogue.locale, caption: dialogue.guidance, durationMs: 5000 },
-          { step: 'CELEBRATE', locale: dialogue.locale, caption: dialogue.celebration, durationMs: 4000 },
+          { step: 'GREETING', locale: normalizedLocale, caption: dialogue.greeting, durationMs: 4000 },
+          { step: 'PLAN', locale: normalizedLocale, caption: dialogue.guidance, durationMs: 5000 },
+          { step: 'CELEBRATE', locale: normalizedLocale, caption: dialogue.celebration, durationMs: 4000 },
         ];
         return fallbackCues;
       }
     }
     return [];
-  }, [narrative, selectedLocale]);
+  }, [locale, narrative, selectedLocale]);
 
 
   useEffect(() => {
@@ -202,6 +219,15 @@ export function PoiDetailScreen({ poiId, locale = 'en' }: Props) {
           </View>
           <SocialHighlightsCard poiId={selectedPoiId} onPlay={() => setPlayerVisible(true)} userLocale={selectedLocale} />
         </View>
+        {narrative?.itinerary?.length ? (
+          <View style={styles.section}>
+            <ItineraryMapCard
+              poiName={summary?.title ?? narrative.id}
+              steps={narrative.itinerary}
+              locale={selectedLocale}
+            />
+          </View>
+        ) : null}
         {narrative && governanceReview && (
           <View style={styles.section}>
             {governanceReview.status === 'flagged' &&

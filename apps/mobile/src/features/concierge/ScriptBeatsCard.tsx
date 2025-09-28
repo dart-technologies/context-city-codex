@@ -14,7 +14,7 @@ export function ScriptBeatsCard({ script, locale }: Props) {
 
   return (
     <View style={styles.container} accessibilityRole="summary">
-      <Text style={styles.heading}>Codex Script Beats</Text>
+      <Text style={styles.heading}>Codexierge Script Beats</Text>
       {isFallback && (
         <Text style={styles.fallbackCopy}>
           Showing {script.locale.toUpperCase()} beats while Codex drafts the {locale.toUpperCase()} version.

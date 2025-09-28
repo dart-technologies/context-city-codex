@@ -1,21 +1,21 @@
 {
   "poi": {
     "id": "poi-felix",
-    "name": "Felix in SoHo",
-    "locale": "fr",
-    "distance": "0,6 km de l'hôtel",
+    "name": "Felix en SoHo",
+    "locale": "es",
+    "distance": "0,6 km del hotel",
     "hours": "10:00-01:00",
-    "tags": ["soho", "bleus"]
+    "tags": ["soho", "la-roja"]
   },
-  "summary": "Dartagnan t'accompagne de Felix jusqu'à Liberty State Park pour l'après-match des Bleus.",
-  "codexiergeLocales": ["fr"],
+  "summary": "Codex te guía por la energía francesa en Felix y el plan de celebración rumbo a Liberty State Park.",
+  "codexiergeLocales": ["es"],
   "segments": [
     {
       "assetId": "asset-felix-1",
       "mediaUrl": "static://assets/felix-rooftop.jpg",
-      "caption": "Electric fan vibe",
-      "title": "Arrivée",
-      "rationale": "Clips temps réel montrant Felix rempli de supporters tricolores.",
+      "caption": "Vibra eléctrica de fans",
+      "title": "Llegada",
+      "rationale": "Clips en vivo muestran Felix repleto de seguidores franceses.",
       "subtitles": {
         "fr": "Felix est plein d'énergie tricolore—viens vibrer.",
         "en": "Felix is pulsing with Les Bleus energy.",
@@ -25,9 +25,9 @@
     {
       "assetId": "asset-felix-2",
       "mediaUrl": "static://assets/liberty-fan-fest.jpg",
-      "caption": "Liberty State Park fireworks",
-      "title": "Après-match",
-      "rationale": "Codex recommande ferry nocturne et show au Liberty State Park.",
+      "caption": "Fuegos en Liberty State Park",
+      "title": "Después del partido",
+      "rationale": "Codex recomienda el ferry nocturno y el carril de celebración.",
       "subtitles": {
         "fr": "Rendez-vous au ferry pour célébrer la victoire.",
         "en": "Meet on the Hudson ferry to celebrate.",
@@ -41,13 +41,13 @@
   "transitionMs": 500,
   "soundtrackUrl": "static://audio/silence.mp3",
   "narrations": {
-    "fr": {
-      "locale": "fr",
-      "audioUrl": "static://audio/poi-felix-fr.wav",
-      "voice": "codex-fr",
+    "es": {
+      "locale": "es",
+      "audioUrl": "static://audio/poi-felix-es.wav",
+      "voice": "codex-es",
       "subtitles": {
-        "asset-felix-1": "Felix est plein d'énergie tricolore—viens vibrer.",
-        "asset-felix-2": "Rendez-vous au ferry pour célébrer la victoire."
+        "asset-felix-1": "Felix vibra con la hinchada francesa.",
+        "asset-felix-2": "Festejamos en el ferry del Hudson."
       }
     }
   }

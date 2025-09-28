@@ -38,6 +38,11 @@ from .translation import (
     GPTTranslator,
     create_translator,
 )
+from .tts import (
+    TTSSynthesizer,
+    TTSRequestItem,
+    create_tts_synthesizer,
+)
 from .accessibility import (
     AccessibilityGenerator,
     AccessibilityItem,
@@ -93,6 +98,9 @@ __all__ = [
     'StaticTranslator',
     'GPTTranslator',
     'create_translator',
+    'TTSSynthesizer',
+    'TTSRequestItem',
+    'create_tts_synthesizer',
     'AccessibilityGenerator',
     'AccessibilityItem',
     'AccessibilityFields',

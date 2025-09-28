@@ -2,7 +2,9 @@ import { HighlightNarrative, HighlightSummary } from '../types/highlight';
 
 const codexHighlightVideo = require('../../assets/codex/codex-highlight.mp4');
 const mercadoHighlightVideo = require('../../assets/codex/mercado-es.mp4');
-const felixHighlightVideo = require('../../assets/codex/felix-fr.mp4');
+const felixHighlightVideoFr = require('../../assets/codex/felix-fr.mp4');
+const felixHighlightVideoEn = require('../../assets/codex/felix-en.mp4');
+const felixHighlightVideoEs = require('../../assets/codex/felix-es.mp4');
 
 export const felixSummary: HighlightSummary = {
   id: 'poi-felix',
@@ -17,11 +19,11 @@ const generatedTimestamp = new Date().toISOString();
 
 export const felixNarrative: HighlightNarrative = {
   id: 'poi-felix',
-  videoUrl: felixHighlightVideo,
+  videoUrl: felixHighlightVideoFr,
   videoByLocale: {
-    fr: felixHighlightVideo,
-    es: mercadoHighlightVideo,
-    en: codexHighlightVideo,
+    fr: felixHighlightVideoFr,
+    es: felixHighlightVideoEs,
+    en: felixHighlightVideoEn,
   },
   transcript: {
     en: 'Dartagnan here! Felix in SoHo is pulsing with Les Bleus energy—let me show you the highlights.',
@@ -114,6 +116,18 @@ export const felixNarrative: HighlightNarrative = {
     { step: 'GUIDE', locale: 'fr', caption: 'Je t’accompagne vers le ferry puis le stade.', durationMs: 4500 },
     { step: 'CELEBRATE', locale: 'fr', caption: 'La fête continue à Liberty State Park après le match!', durationMs: 4000 },
     { step: 'FAREWELL', locale: 'fr', caption: 'À bientôt, ami!', durationMs: 3000 },
+    { step: 'GREETING', locale: 'en', caption: 'Hey friend! Dartagnan here to guide your match day.', durationMs: 3400 },
+    { step: 'PLAN', locale: 'en', caption: 'Codex lined up brunch, fan fest, and the MetLife hop.', durationMs: 4200 },
+    { step: 'BOOK', locale: 'en', caption: 'I’ll lock the Felix rooftop table before kickoff.', durationMs: 3800 },
+    { step: 'GUIDE', locale: 'en', caption: 'Follow me through PATH timings straight to the stadium.', durationMs: 4200 },
+    { step: 'CELEBRATE', locale: 'en', caption: 'Rally back at Liberty State Park for the ferry fireworks.', durationMs: 3800 },
+    { step: 'FAREWELL', locale: 'en', caption: 'See you soon—Codex will ping the next move.', durationMs: 3000 },
+    { step: 'GREETING', locale: 'es', caption: '¡Hola! Soy Dartagnan listo para tu día mundialista.', durationMs: 3400 },
+    { step: 'PLAN', locale: 'es', caption: 'Codex arma desayuno, fan fest y salto a MetLife.', durationMs: 4200 },
+    { step: 'BOOK', locale: 'es', caption: 'Reservo la terraza de Felix antes de que se llene.', durationMs: 3800 },
+    { step: 'GUIDE', locale: 'es', caption: 'Sígueme por el PATH directo al estadio.', durationMs: 4200 },
+    { step: 'CELEBRATE', locale: 'es', caption: 'Celebramos en Liberty State Park con fuegos y ferry.', durationMs: 3800 },
+    { step: 'FAREWELL', locale: 'es', caption: '¡Hasta pronto! Codex te avisará del próximo paso.', durationMs: 3000 },
   ],
   itinerary: [
     { id: 'plan', label: 'Plan itinerary', description: 'Review Codex-curated timeline.', action: 'plan' },
@@ -192,7 +206,7 @@ export const highlightMocks: Record<string, { summary: HighlightSummary; narrati
       videoByLocale: {
         es: mercadoHighlightVideo,
         en: codexHighlightVideo,
-        fr: felixHighlightVideo,
+        fr: felixHighlightVideoFr,
       },
       transcript: {
         es: '¡España está aquí! Mercado vibra con tortilla, vermut y cánticos pre-partido.',
@@ -340,7 +354,7 @@ export const highlightMocks: Record<string, { summary: HighlightSummary; narrati
       videoByLocale: {
         en: codexHighlightVideo,
         es: mercadoHighlightVideo,
-        fr: felixHighlightVideo,
+        fr: felixHighlightVideoFr,
       },
       transcript: {
         en: 'Ferry horns cue the festival kickoff—Codex guides you to Liberty State Park for supporter rehearsals.',

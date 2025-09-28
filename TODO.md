@@ -55,6 +55,14 @@ This backlog aligns implementation work with the updated ContextCity Codex spec 
     - [x] Produce multi-language scripts (English, Spanish, French) aligned with Dartagnan persona beats. (Codexierge output integrated into mobile UI)
     - [x] Create rationale snippets for "Why Codex chose this" surfaces and itinerary transitions. (Generated via context_workers.extraction)
 
+## Demo Recording (Mock Path)
+
+- [ ] Freeze highlight JSON + narration assets in `services/highlights-api/data/highlights` before capture.
+- [ ] Launch Expo without `EXPO_PUBLIC_API_BASE_URL` so MSW mocks stay active (`yarn expo start` from repo root).
+- [ ] Smoke the mock flow: load all POIs, toggle transcripts/locales, trigger feedback + telemetry, verify Metro only logs mock fetch fallbacks.
+- [ ] Record the walkthrough (Immersive reel, rationale card, Dartagnan overlay, accessibility drawer) following the hackathon narrative.
+- [ ] Export/trim the recording and stage supporting screenshots for README/submission deck.
+
 ## Video Assembly Pipeline
 
 - [x] Create reusable Remotion or managed-service templates with ContextCity branding (glassmorphism Remotion kit with ContextCity palette + Dartagnan styling).

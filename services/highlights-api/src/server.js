@@ -41,6 +41,7 @@ function appendLog(entry) {
 function loadHighlight(poiId) {
   const filePath = path.join(highlightsDir, `${poiId}.json`);
   if (!fs.existsSync(filePath)) {
+    console.warn('[api] highlight missing', filePath);
     return null;
   }
   const raw = fs.readFileSync(filePath, 'utf-8');

@@ -2,20 +2,20 @@
   "poi": {
     "id": "poi-felix",
     "name": "Felix in SoHo",
-    "locale": "fr",
-    "distance": "0,6 km de l'hôtel",
+    "locale": "en",
+    "distance": "0.4 mi from hotel",
     "hours": "10:00-01:00",
-    "tags": ["soho", "bleus"]
+    "tags": ["soho", "les-bleus"]
   },
-  "summary": "Dartagnan t'accompagne de Felix jusqu'à Liberty State Park pour l'après-match des Bleus.",
-  "codexiergeLocales": ["fr"],
+  "summary": "Codex walks you through Felix's Les Bleus rooftop energy and the Liberty State Park celebration plan.",
+  "codexiergeLocales": ["en"],
   "segments": [
     {
       "assetId": "asset-felix-1",
       "mediaUrl": "static://assets/felix-rooftop.jpg",
       "caption": "Electric fan vibe",
-      "title": "Arrivée",
-      "rationale": "Clips temps réel montrant Felix rempli de supporters tricolores.",
+      "title": "Arrival",
+      "rationale": "Real-time clips show Felix packed with French supporters.",
       "subtitles": {
         "fr": "Felix est plein d'énergie tricolore—viens vibrer.",
         "en": "Felix is pulsing with Les Bleus energy.",
@@ -26,8 +26,8 @@
       "assetId": "asset-felix-2",
       "mediaUrl": "static://assets/liberty-fan-fest.jpg",
       "caption": "Liberty State Park fireworks",
-      "title": "Après-match",
-      "rationale": "Codex recommande ferry nocturne et show au Liberty State Park.",
+      "title": "After-match",
+      "rationale": "Codex recommends ferry fireworks and the celebration queue.",
       "subtitles": {
         "fr": "Rendez-vous au ferry pour célébrer la victoire.",
         "en": "Meet on the Hudson ferry to celebrate.",
@@ -41,13 +41,13 @@
   "transitionMs": 500,
   "soundtrackUrl": "static://audio/silence.mp3",
   "narrations": {
-    "fr": {
-      "locale": "fr",
-      "audioUrl": "static://audio/poi-felix-fr.wav",
-      "voice": "codex-fr",
+    "en": {
+      "locale": "en",
+      "audioUrl": "static://audio/poi-felix-en.wav",
+      "voice": "codex-en",
       "subtitles": {
-        "asset-felix-1": "Felix est plein d'énergie tricolore—viens vibrer.",
-        "asset-felix-2": "Rendez-vous au ferry pour célébrer la victoire."
+        "asset-felix-1": "Felix is pulsing with Les Bleus energy.",
+        "asset-felix-2": "Meet on the Hudson ferry to celebrate."
       }
     }
   }

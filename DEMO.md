@@ -15,13 +15,13 @@ Today, we’ll demo how our concierge takes a tourist from “Plan my day” to 
 
 This is how we turn New York into a smart, welcoming city — for the World Cup, and for every visitor after.
 
-## 60-Second Demo Script
-- **Pre-roll**: Follow the [Live Service Connection Playbook](docs/live_connection_playbook.md) to ensure Expo is pointed at the Highlights API and GPT-powered manifests.
-- **0-10s**: Launch Expo (simulator or device) with `EXPO_PUBLIC_API_BASE_URL` set. Dartagnan greets the traveler; Codex Whisper plays the Spanish Mercado Little Spain reel live from the Highlights API. Narration bubble reflects GPT concierge cues.
-- **10-20s**: Open the rationale drawer; confirm the API-sourced “Why Codex chose this” data (engagement, proximity, accessibility) is visible.
-- **20-30s**: Tap the “Plan” toggle to expand the concierge tray. Walk through the itinerary steps (Plan itinerary → Book now → Guide me → Celebrate), calling out multi-language descriptions and GPT-authored accessibility notes.
-- **30-40s**: Trigger “Book now”; show mock confirmation flow and mention how the API would call the booking agent (no live booking for the demo).
-- **40-50s**: Hit “Guide me”; surface bilingual NJ Transit guidance and mention live feeds (service alerts) the Highlights API would incorporate.
-- **50-60s**: Switch locales via reel dropdown (Spanish ↔ French) to demonstrate localized audio descriptions and captions. Close with “Celebrate” CTA and highlight telemetry/feedback logging (check Highlights API console for `telemetry.received` / `feedback.received`).
+## 90-Second Demo Script
+- **Pre-roll**: Follow the [Live Service Connection Playbook](docs/live_connection_playbook.md). If the live API is flaky, remove `EXPO_PUBLIC_API_BASE_URL` to run on MSW mocks (they now include localized reels and narration).
+- **0-15s**: Launch Expo. Show the Support + Language pickers (select France → Français). Press Play—Dartagnan overlay captions are in French, and the video is the localized Felix reel.
+- **15-30s**: Toggle the Language dropdown to English, then Spanish. Highlight the quick localized reload (Metro shows the cue locale logs). Mention the matching narration WAV.
+- **30-45s**: Scroll to the compact Itinerary card. Call out how step labels/descriptions adapt to locale. Point at the rationale card (“Why the Codexierge chose this”).
+- **45-60s**: Open the rationale drawer—show telemetry logs in Metro/API console. Submit “helpful feedback” and call out expected mock response.
+- **60-75s**: Open the Dartagnan overlay (Plan itinerary → Celebrate). Note localized speech bubble text lined up with `codexiergeCues`.
+- **75-90s**: Mention the Remotion reels: three outputs with localized narration, subtitles, and new stills (felix-rooftop/liberty-fan-fest). Close with guidance on viewing the Remotion outputs or playing the MP4s we bundled in `apps/mobile/assets/codex/`.
 
-> Prep asset: `assets/codex/dartagnan.png` (Dartagnan portrait) for on-screen cameos.
+> Prep asset: `assets/codex/dartagnan.png` (Dartagnan portrait) and the three `apps/mobile/assets/codex/felix-*.mp4` for showcase clips.

@@ -50,11 +50,11 @@ Then point Remotion at the saved JSON:
 npx remotion render src/index.tsx CodexHighlightVideo out/custom-run.mp4 --props /tmp/codex-remotion.json
 ```
 
-The props file includes per-locale subtitles and optional narration audio URLs. Adjust `--voiceover-locales` or `--voiceover-audio-prefix` in the CLI call if you want to target different languages or asset buckets.
+The props file includes per-locale subtitles and optional narration audio URLs. Adjust `--voiceover-locales` or `--voiceover-audio-prefix` in the CLI call if you want to target different languages or asset buckets. We bundled example props and audio for Felix (`examples/felix-{fr,en,es}.json` plus `public/audio/poi-felix-*.wav`) so the Expo mock can swap localized reels instantly.
 
 ## TODO
 
 - Wire soundtrack assets and dynamic transitions once the audio plan lands.
 - Align clip duration and transitions with production timing cues.
 
-Example: save your Felix interior shot as `public/assets/asset-1.jpg` and the Liberty fan fest skyline as `public/assets/asset-2.jpg` before running the workers CLI with `--remotion-media-dir services/remotion-pipeline/assets`.
+Example: save your Felix interior shot as `public/assets/felix-rooftop.jpg` and the Liberty fan fest skyline as `public/assets/liberty-fan-fest.jpg` before running the workers CLI with `--remotion-media-dir services/remotion-pipeline/assets`.

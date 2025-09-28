@@ -57,11 +57,11 @@ This backlog aligns implementation work with the updated ContextCity Codex spec 
 
 ## Demo Recording (Mock Path)
 
-- [ ] Freeze highlight JSON + narration assets in `services/highlights-api/data/highlights` before capture.
-- [ ] Launch Expo without `EXPO_PUBLIC_API_BASE_URL` so MSW mocks stay active (`yarn expo start` from repo root).
-- [ ] Smoke the mock flow: load all POIs, toggle transcripts/locales, trigger feedback + telemetry, verify Metro only logs mock fetch fallbacks.
-- [ ] Record the walkthrough (Immersive reel, rationale card, Dartagnan overlay, accessibility drawer) following the hackathon narrative.
-- [ ] Export/trim the recording and stage supporting screenshots for README/submission deck.
+- [x] Freeze highlight JSON + narration assets in `services/highlights-api/data/highlights` before capture.
+- [x] Launch Expo without `EXPO_PUBLIC_API_BASE_URL` so MSW mocks stay active (`yarn expo start` from repo root).
+- [x] Smoke the mock flow: load all POIs, toggle transcripts/locales, trigger feedback + telemetry, verify Metro only logs mock fetch fallbacks.
+- [x] Record the walkthrough (Immersive reel, itinerary route card, rationale card, Dartagnan overlay, accessibility drawer) following the hackathon narrative.
+- [x] Export/trim the recording and stage supporting screenshots for README/submission deck.
 
 ## Video Assembly Pipeline
 
@@ -78,6 +78,7 @@ This backlog aligns implementation work with the updated ContextCity Codex spec 
 - [x] Detect language and accessibility preferences from Codex profiles using GPT-5 signals and conversations (CLI now calls preference service with GPT-5 fallback heuristics offline; Content Workers emit locale cues for downstream use).
 - [x] **P0** Automate translation of captions, on-screen text, and scripts purely via GPT-5 prompts and evaluation loops (Content Workers call GPT-5 translation service with fallback heuristics and persist per-locale bundles).
 - [x] **P0** Produce captions, audio descriptions, haptic cues, and alt-text-only fallbacks for low-bandwidth scenarios using GPT-5 authored assets (Content Workers author accessibility bundles per locale and feed Remotion/Expo fallbacks).
+- [x] Integrate GPT-5 TTS hooks in content workers and Remotion props (env-driven) so localized narration assets populate the mobile demo.
 - [ ] **P1** Validate localized voiceovers via GPT-5 speech synthesis / review and ensure transcripts sync across locales (iterate through Codexierge script beats and narration manifests).
 - [ ] **P1** QA Spanish and French itinerary flows, including Dartagnan captions and GPT-5 generated TTS output (exercise Expo demo path with localized assets).
 - [ ] **P1** Wire Expo concierge to play GPT-authored audio descriptions and trigger haptic cues in the live build once endpoints are provisioned.

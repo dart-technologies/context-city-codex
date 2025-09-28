@@ -111,18 +111,29 @@ The narrative pipeline now emits Dartagnan-ready dialogue for English, Spanish, 
 
 Add `--storage-output-dir <path>` to control where manifests/payloads land locally and supply `--storage-base-url https://storage.googleapis.com/<bucket>` to fabricate signed URL placeholders for demo hand-offs. Use `--storage-provider none` to skip persistence when benchmarking.
 
-Generate localized narration + subtitles while running the CLI (saved for Remotion fallback or other pipelines):
+Provide local art by adding `--remotion-media-dir services/remotion-pipeline/public/assets` (the CLI swaps each asset URL with a matching filename). Place royalty-free JPG/PNG files such as `asset-1.jpg` and `asset-2.jpg` in that folder before rendering to avoid remote fetch errors.
+
+### TTS + Remotion props
+
+Enable GPT-5 narration synthesis by configuring the new TTS generator:
 
 ```bash
+export CODEX_TTS_ENDPOINT="https://api.context.city/tts"
+export CODEX_TTS_API_KEY="<gpt-key>"
+export CODEX_TTS_DEFAULT_VOICE="dartagnan-en"
+export CODEX_TTS_VOICE_FR="dartagnan-fr"
+export CODEX_TTS_VOICE_ES="dartagnan-es"
+
 poetry run content-workers demo \
   --input fixtures/sample_assets.json \
   --frame-sample-size 2 \
-    --voiceover-locales en,es,fr \
+  --voiceover-locales en,es,fr \
+  --tts-generator gpt \
   --voiceover-audio-prefix https://cdn.contextcity.dev/audio \
   --remotion-props-output /tmp/codex-remotion.json
 ```
 
-Provide local art by adding `--remotion-media-dir services/remotion-pipeline/public/assets` (the CLI swaps each asset URL with a matching filename). Place royalty-free JPG/PNG files such as `asset-1.jpg` and `asset-2.jpg` in that folder before rendering to avoid remote fetch errors.
+When the TTS endpoint is unavailable, the CLI falls back to silence and still emits subtitle maps so Remotion/Expo remain consistent.
 
 ## Preference inference microservice
 

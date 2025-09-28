@@ -5,7 +5,11 @@ This repository houses the hackathon build for the **GPT-5 Startup Hackathon NYC
 ## What We're Building
 - **Context-aware city concierge** centered on the Spain vs. France World Cup final in NYC.
 - Dartagnan the Doodle fronts the experience while GPT-5 Codex curates multi-language social highlight reels, itineraries, and bookings.
+- Remotion renders localized MP4 reels (FR/EN/ES) with matching narration; Expo consumes them alongside Codex rationale, itinerary map card, and concierge overlay cues.
 - All work is open source for hackathon verification; no pre-existing code.
+
+## 🎥 Demo Video
+- Watch the end-to-end concierge flow here: [ContextCity Codex Concierge Demo](https://youtube.com/shorts/XryFMA-IeTg).
 
 ## Key Docs
 - `FEATURE_SOCIAL_FEEDS.md` – full feature spec and hackathon scenario.

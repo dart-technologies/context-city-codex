@@ -25,9 +25,9 @@ The reel is positioned as a "Codex Whisper" in the ContextCity lore. While the c
 
 ### 1.6 Hackathon MVP Scenario: World Cup Final NYC
 For the GPT-5 hackathon, the MVP focuses on Spain vs. France fans arriving in New York. Dartagnan the Doodle greets travelers as the on-screen concierge while the Codex assembles:
-* Multi-language highlight reels (Spanish and French) for key POIs such as Mercado Little Spain, the [Liberty State Park Fan Festival](https://www.prnewswire.com/news-releases/one-year-to-go-liberty-state-park-named-official-site-of-fifa-fan-festival-nynj-302479180.html), Felix in SoHo, and MetLife Stadium.
+* Multi-language highlight reels (Spanish, French, English) for key POIs such as Mercado Little Spain, the [Liberty State Park Fan Festival](https://www.prnewswire.com/news-releases/one-year-to-go-liberty-state-park-named-official-site-of-fifa-fan-festival-nynj-302479180.html), Felix in SoHo, and MetLife Stadium, including localized narration generated via GPT-5 TTS or manual voice packs.
 * Real-time transit and crowd signals that adapt itineraries on the fly.
-* Booking-ready CTAs that transition effortlessly from previewing a venue to reserving, navigating, and celebrating post-match.
+* Booking-ready CTAs and a concierge route card that transition effortlessly from previewing a venue to reserving, navigating, and celebrating post-match.
 
 ## 2. Technical Specification
 
@@ -139,7 +139,7 @@ For the GPT-5 hackathon, the MVP focuses on Spain vs. France fans arriving in Ne
 ### 3.4 Concierge Integration Beats
 1. **Welcome whisper:** Dartagnan greets the traveler, auto-selecting language and injecting lore-aligned copy.
 2. **Vibe check:** Users scrub highlight beats while seeing live crowd sentiment badges and "Why Codex picked this" insights.
-3. **Action pivot:** Booking and navigation CTAs animate in sync with finale frames, bridging the reel into concierge tasks.
+3. **Action pivot:** Booking and navigation CTAs animate in sync with finale frames, bridging the reel into concierge tasks. A “Route to {POI}” card previews the next four moves with localized copy.
 4. **Post-play recap:** A digest card captures itinerary slots claimed, upcoming legs, and prompts to explore adjacent POIs.
 
 ## 4. Data Flow & Operations

@@ -6,6 +6,6 @@ export const server = setupServer(...handlers);
 if (process.env.NODE_ENV === 'test') {
   // During Jest the server is managed in setup file.
 } else if (__DEV__) {
-  server.listen({ onUnhandledRequest: 'bypass' });
+  server.listen();
   console.info('[msw] Mock service worker running (native)');
 }

@@ -7,7 +7,7 @@
 
 const PASSTHROUGH = Symbol('msw-bridge-passthrough');
 
-type Method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+type Method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'ALL';
 
 type RestRequestLike = {
   params: Record<string, string>;
@@ -18,7 +18,9 @@ type RestRequestLike = {
   json: () => Promise<any>;
 };
 
-type ResolverResult = Response | ResponseInit | typeof PASSTHROUGH | void;
+type MockResponseInit = ResponseInit & { body?: BodyInit | null };
+
+type ResolverResult = Response | MockResponseInit | typeof PASSTHROUGH | void;
 
 type Resolver = (request: RestRequestLike) => ResolverResult | Promise<ResolverResult>;
 
@@ -38,7 +40,7 @@ export const http = {
   put: createHandlerFactory('PUT'),
   patch: createHandlerFactory('PATCH'),
   delete: createHandlerFactory('DELETE'),
-  all: createHandlerFactory('GET'),
+  all: createHandlerFactory('ALL'),
 };
 
 export const HttpResponse = {
@@ -53,7 +55,7 @@ export const HttpResponse = {
   },
 };
 
-export const passthrough = () => PASSTHROUGH;
+export const passthrough = (): typeof PASSTHROUGH => PASSTHROUGH;
 
 function matchPath(pattern: string, url: URL) {
   const patternSegments = pattern.replace(/^\//, '').split('/');
@@ -82,11 +84,14 @@ export function setupServer(...initialHandlers: Handler[]) {
 
   const resolve = async (input: RequestInfo | URL, init?: RequestInit) => {
     const request = typeof input === 'string' || input instanceof URL ? new Request(input, init) : input;
-    const url = new URL(request.url);
+    const targetUrl = request.url.startsWith('http://') || request.url.startsWith('https://')
+      ? request.url
+      : `http://msw.local${request.url.startsWith('/') ? '' : '/'}${request.url}`;
+    const url = new URL(targetUrl);
     const method = (request.method || 'GET').toUpperCase() as Method;
 
     for (const handler of handlers) {
-      if (handler.method !== method && !(handler.method === 'GET' && method === 'GET')) {
+      if (handler.method !== 'ALL' && handler.method !== method) {
         continue;
       }
       const params = matchPath(handler.matcher, url);
@@ -111,7 +116,8 @@ export function setupServer(...initialHandlers: Handler[]) {
         return result;
       }
 
-      return new Response((result as ResponseInit).body, result);
+      const { body, ...init } = result as MockResponseInit;
+      return new Response(body, init);
     }
 
     return undefined;

@@ -7,7 +7,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const app = express();
-const PORT = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(express.json());
@@ -18,8 +17,22 @@ const __dirname = path.dirname(__filename);
 
 const defaultHighlightsDir = path.resolve(__dirname, '../data/highlights');
 const highlightsDir = process.env.HIGHLIGHTS_DIR ? path.resolve(process.env.HIGHLIGHTS_DIR) : defaultHighlightsDir;
-const defaultLogPath = path.resolve(__dirname, '../data/feedback.log');
-const logPath = process.env.FEEDBACK_LOG_PATH ? path.resolve(process.env.FEEDBACK_LOG_PATH) : defaultLogPath;
+const resolvedLogPath = (() => {
+  if (process.env.FEEDBACK_LOG_PATH) {
+    return path.resolve(process.env.FEEDBACK_LOG_PATH);
+  }
+  if (process.env.VERCEL) {
+    return path.join('/tmp', 'feedback.log');
+  }
+  return path.resolve(__dirname, '../data/feedback.log');
+})();
+
+const logPathDir = path.dirname(resolvedLogPath);
+if (!fs.existsSync(logPathDir)) {
+  fs.mkdirSync(logPathDir, { recursive: true });
+}
+
+const logPath = resolvedLogPath;
 
 function appendLog(entry) {
   fs.appendFileSync(logPath, `${JSON.stringify(entry)}\n`);
@@ -120,11 +133,5 @@ app.use((err, req, res, next) => {
   console.error('highlight.fetch.failure', err);
   res.status(503).json({ error: 'HIGHLIGHT_SERVICE_FAILURE', message: 'Unable to load highlight narrative at this time.' });
 });
-
-if (process.env.NODE_ENV !== 'test') {
-  app.listen(PORT, () => {
-    console.log(`Highlights API listening on port ${PORT}`);
-  });
-}
 
 export default app;

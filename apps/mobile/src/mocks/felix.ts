@@ -172,7 +172,7 @@ export const felixNarrative: HighlightNarrative = {
   },
 };
 
-export const highlightMocks = {
+export const highlightMocks: Record<string, { summary: HighlightSummary; narrative: HighlightNarrative }> = {
   'poi-felix': {
     summary: felixSummary,
     narrative: felixNarrative,
@@ -513,4 +513,4 @@ export const highlightMocks = {
       },
     },
   },
-} as const;
+};

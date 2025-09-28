@@ -2,8 +2,9 @@ import React from 'react';
 import { StatusBar, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { PoiDetailScreen } from './src/screens/PoiDetailScreen';
+import { API_BASE_URL } from './src/utils/env';
 
-if (__DEV__) {
+if (__DEV__ && !API_BASE_URL) {
   require('./src/mocks/server');
 }
 

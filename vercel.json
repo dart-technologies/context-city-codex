@@ -1,0 +1,6 @@
+{
+  "installCommand": "npm install --prefix services/highlights-api",
+  "env": {
+    "FEEDBACK_LOG_PATH": "/tmp/feedback.log"
+  }
+}

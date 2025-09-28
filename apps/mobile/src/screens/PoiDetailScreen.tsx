@@ -114,9 +114,9 @@ export function PoiDetailScreen({ poiId, locale = 'en' }: Props) {
   const governanceWarningsKey = governanceReview?.warnings.join('|') ?? '';
   const highlightId = narrative?.id;
   const [isPlayerVisible, setPlayerVisible] = useState(false);
-  const overlayCues = useMemo(() => {
+  const overlayCues = useMemo<CodexiergeNarrationCue[]>(() => {
     if (!narrative) {
-      return [] as CodexiergeNarrationCue[];
+      return [];
     }
     if (narrative.codexiergeCues && narrative.codexiergeCues.length > 0) {
       return narrative.codexiergeCues;
@@ -124,14 +124,15 @@ export function PoiDetailScreen({ poiId, locale = 'en' }: Props) {
     if (narrative.codexierge) {
       const dialogue = narrative.codexierge[selectedLocale] ?? narrative.codexierge.en;
       if (dialogue) {
-        return [
+        const fallbackCues: CodexiergeNarrationCue[] = [
           { step: 'GREETING', locale: dialogue.locale, caption: dialogue.greeting, durationMs: 4000 },
           { step: 'PLAN', locale: dialogue.locale, caption: dialogue.guidance, durationMs: 5000 },
           { step: 'CELEBRATE', locale: dialogue.locale, caption: dialogue.celebration, durationMs: 4000 },
         ];
+        return fallbackCues;
       }
     }
-    return [] as CodexiergeNarrationCue[];
+    return [];
   }, [narrative, selectedLocale]);
 
 
@@ -216,7 +217,7 @@ export function PoiDetailScreen({ poiId, locale = 'en' }: Props) {
             ) : (
               <View style={styles.rationaleStack}>
                 {governanceReview.warnings.includes('stale_decision_log') && (
-                  <View style={styles.noticeBanner} accessibilityRole="status">
+                  <View style={styles.noticeBanner} accessibilityRole="text">
                     <Text style={styles.noticeCopy}>{WARNING_COPY.stale_decision_log}</Text>
                   </View>
                 )}

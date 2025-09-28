@@ -7,6 +7,7 @@ import { felixNarrative } from '../../../mocks/felix';
 
 jest.mock('expo-video', () => {
   const React = require('react');
+  const { View } = require('react-native');
   const createPlayer = () => {
     const listeners = new Map();
     return {
@@ -28,7 +29,7 @@ jest.mock('expo-video', () => {
   let lastPlayer: any = null;
   return {
     __esModule: true,
-    VideoView: (props: any) => <mock-video {...props} />,
+    VideoView: (props: any) => <View testID="mock-video" {...props} />,
     useVideoPlayer: jest.fn((source: any, setup?: (player: any) => void) => {
       if (!lastPlayer) {
         lastPlayer = createPlayer();

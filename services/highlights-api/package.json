@@ -5,8 +5,8 @@
   "type": "module",
   "main": "src/server.js",
   "scripts": {
-    "dev": "node --watch src/server.js",
-    "start": "NODE_ENV=production node src/server.js",
+    "dev": "node --watch src/index.js",
+    "start": "NODE_ENV=production node src/index.js",
     "test": "node --test src/server.test.js"
   },
   "dependencies": {

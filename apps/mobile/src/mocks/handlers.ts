@@ -15,13 +15,13 @@ export const handlers = [
     return HttpResponse.json(record, { status: 200 });
   }),
 
-  http.post('/api/feedback', async ({ request }) => {
+  http.post('/api/feedback', async (request) => {
     const body = await request.json().catch(() => ({}));
     console.log('[msw] Feedback received', body);
     return HttpResponse.json({ ok: true }, { status: 202 });
   }),
 
-  http.post('/api/telemetry', async ({ request }) => {
+  http.post('/api/telemetry', async (request) => {
     const body = await request.json().catch(() => ({}));
     console.log('[msw] Telemetry received', body);
     return HttpResponse.json({ ok: true }, { status: 202 });
